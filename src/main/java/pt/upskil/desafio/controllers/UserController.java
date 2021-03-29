@@ -26,6 +26,8 @@ public class UserController {
     public String showMainPage() {
         return "redirect:/";
     }
+
+
     //registration
     @GetMapping(value = "/registration")
     public String showRegistrationPage(ModelMap modelMap) {
