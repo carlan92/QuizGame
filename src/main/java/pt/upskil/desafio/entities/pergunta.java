@@ -1,20 +1,15 @@
 package pt.upskil.desafio.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 public class Pergunta {
 
-    public static final int NUM_RESPOSTAS = 4;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String descricao;
     @OneToMany
