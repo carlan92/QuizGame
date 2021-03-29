@@ -1,15 +1,10 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 0;
+.logo {
+    width: 50%;
 }
 
-.horizontal-list {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.horizontal-list li {
-    float: left;
+.header_icon{
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
 }
