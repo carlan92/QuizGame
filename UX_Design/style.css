@@ -1,10 +1,110 @@
 .logo {
-    width: 50%;
+    width: 70px
 }
 
-.header_icon{
+.header_icon {
     display: block;
     margin: auto;
     width: 40px;
     height: 40px;
+}
+
+.container {
+    margin: 0;
+    max-width: 100%;
+}
+
+.header_logo {
+    margin-left: 20px;
+}
+
+.header_buttons {
+    margin-left: auto;
+}
+
+.main {
+    box-sizing: border-box;
+    z-index: 1;
+    overflow-x: hidden;
+    padding: 50px;
+}
+
+.main::before {
+    content: "";
+    background-image: url("imagens/background_2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.middle-row3 {
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.middle-row3 * {
+    margin: auto;
+}
+
+.main .card_box2 {
+    box-sizing: border-box;
+    height: 100%;
+    border-radius: 10px;
+    background: transparent linear-gradient(90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 7px 7px 20px 7px grey;
+}
+
+.card_box2 * {
+    box-sizing: border-box;
+    border: none;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.main .card2 {
+    box-sizing: border-box;
+    height: 100%;
+    min-width: 100%;
+    background-color: transparent;
+}
+
+.card-body2 {
+    box-sizing: border-box;
+    height: 100%;
+    min-width: 100%;
+    padding: 25px 30px;
+}
+
+.card-body2 h2, h3 {
+    color: #000000;
+    margin: 10px;
+    font: normal normal bold 27px/30px "Lato";
+    letter-spacing: 1.5px;
+    color: #2c363e;
+}
+
+.card-body2 span {
+    font: normal normal bold 40px/24px "Lato";
+    color: #377bd4;
+    padding: 15px;
+}
+
+.card-body2 p {
+    color: #36383b;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "Lato";
+    margin: 10px;
+}
+
+.dash_icon {
+    width: 60px;
+    padding: 10px;
 }
