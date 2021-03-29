@@ -16,12 +16,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
+
+                //login
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/")
                 .failureUrl("/login?error=true")
+
+                //logout
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
