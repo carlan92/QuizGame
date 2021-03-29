@@ -76,7 +76,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
             Resposta resposta = respostas.get(i - 1);
             if (resposta.isCerta())
                 certa = i;
-            perguntaRequest.put("resposta" + i, resposta);
+            perguntaRequest.put("resposta" + i, resposta.getTexto());
         }
         if (certa == -1) {
             throw new InvalidPerguntaException("A pergunta não tem nenhuma resposta indicada como certa");
