@@ -4,6 +4,7 @@ import net.minidev.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -29,7 +30,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
 
     public static void main(String[] args) {
         PerguntaServico perguntaServico = new PerguntaServicoImpl();
-        Pergunta p = new Pergunta();
+        /*Pergunta p = new Pergunta();
         ArrayList<Resposta> respostas = new ArrayList<>(4);
         respostas.add(new Resposta(p, "wrong answer", false));
         respostas.add(new Resposta(p, "wrong answer", false));
@@ -42,26 +43,30 @@ public class PerguntaServicoImpl implements PerguntaServico {
             perguntaServico.addicionarPergunta(p);
         } catch (AdicionarPerguntaException e) {
             e.printStackTrace();
+        }*/
+
+        try {
+            System.out.println(perguntaServico.obterEstatisticas());
+            for (Pergunta p : perguntaServico.obterPerguntas(Dificuldade.FACIL)) {
+                System.out.println(p.getDescricao());
+                for (Resposta r : p.getRespostas())
+                    System.out.println(r.getTexto());
+            }
+        } catch (ObterPerguntasException | ObterEstatisticaException e) {
+            e.printStackTrace();
         }
-        //try {
-        //    for (Pergunta p : perguntaServico.obterPerguntas(Dificuldade.FACIL)) {
-        //        System.out.println(p.getDescricao());
-        //        for (Resposta r : p.getRespostas())
-        //            System.out.println(r.getTexto());
-        //    }
-        //} catch (ObterPerguntasException e) {
-        //    e.printStackTrace();
-        //}
     }
 
     private static final RestTemplate restTemplate = new RestTemplate();
     private static final HttpHeaders headers = new HttpHeaders();
+
     static {
         headers.setContentType(MediaType.APPLICATION_JSON);
     }
+
     private static final String URL_ADDICIONAR_PERGUNTA = "https://serro.pt/perguntas/nova";
     private static final String URL_PEDIR_PERGUNTAS = "https://serro.pt/perguntas/%s"; //%s place-holder para difficuldade
-    private static final String URL_PEDIR_ESTATISTICAS= "https://serro.pt/perguntas";
+    private static final String URL_PEDIR_ESTATISTICAS = "https://serro.pt/perguntas";
 
     @Override
     public void addicionarPergunta(Pergunta pergunta) throws AdicionarPerguntaException {
@@ -87,34 +92,37 @@ public class PerguntaServicoImpl implements PerguntaServico {
         StatusResponse response = null;
         try {
             response = restTemplate.postForObject(URL_ADDICIONAR_PERGUNTA,
-                new HttpEntity<>(perguntaRequest.toString(), headers), StatusResponse.class);
+                    new HttpEntity<>(perguntaRequest.toString(), headers), StatusResponse.class);
         } catch (HttpClientErrorException |
                 HttpServerErrorException |
                 UnknownHttpStatusCodeException e) {
         }
-        if(response == null || response.status.equals("error")) {
+        if (response == null || response.status.equals("error")) {
             throw new AdicionarPerguntaException();
         }
     }
 
     @Override
     public List<Pergunta> obterPerguntas(Dificuldade dificuldade) throws ObterPerguntasException {
-        ListaPerguntasResponse response;
+        ResponseEntity<PerguntaResponse[]> response;
         try {
-            response = restTemplate.getForObject(String.format(URL_PEDIR_PERGUNTAS, dificuldade.getApiText()), ListaPerguntasResponse.class);
+            response = restTemplate.getForEntity(String.format(URL_PEDIR_PERGUNTAS, dificuldade.getApiText()), PerguntaResponse[].class);
         } catch (HttpClientErrorException |
                 HttpServerErrorException |
                 UnknownHttpStatusCodeException e) {
             throw new ObterPerguntasException();
         }
-        if (response == null || response.getStatus().equals("error")) {
+
+        if (response.getBody() == null ) {
             throw new ObterPerguntasException();
         }
 
-        List<Pergunta> perguntas = new ArrayList<>(response.getPerguntas().size());
-        for (PerguntaResponse pr : response.getPerguntas()) {
+        List<Pergunta> perguntas = new ArrayList<>(response.getBody().length);
+        for (PerguntaResponse pr : response.getBody()) {
             Pergunta pergunta = new Pergunta();
-            pergunta.setDescricao(pr.getDescricao());
+
+            pergunta.setDescricao(pr.getPergunta());
+
             List<Resposta> respostas = new ArrayList<>(Pergunta.NUM_RESPOSTAS);
             respostas.add(new Resposta(pergunta, pr.getResposta1(), pr.getCerta().equals("1")));
             respostas.add(new Resposta(pergunta, pr.getResposta2(), pr.getCerta().equals("2")));
@@ -122,6 +130,8 @@ public class PerguntaServicoImpl implements PerguntaServico {
             respostas.add(new Resposta(pergunta, pr.getResposta4(), pr.getCerta().equals("4")));
             pergunta.setRespostas(respostas);
             pergunta.setDificuldade(Dificuldade.getDifficuldadeFromApiText(pr.getDificuldade()));
+            // TODO set da resposta certa
+
             perguntas.add(pergunta);
         }
 
@@ -140,9 +150,9 @@ public class PerguntaServicoImpl implements PerguntaServico {
                 UnknownHttpStatusCodeException e) {
             throw new ObterEstatisticaException();
         }
-        if (response == null || response.getStatus().equals("error")) {
+       /* if (response == null || response.getStatus().equals("error")) {
             throw new ObterEstatisticaException();
-        }
+        }*/
         Map<String, Integer> result = new HashMap<>();
         result.put("total", Integer.valueOf(response.getTotal()));
         result.put("fáceis", Integer.valueOf(response.getFaceis()));
