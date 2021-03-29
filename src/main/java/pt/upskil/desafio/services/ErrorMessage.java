@@ -2,7 +2,8 @@ package pt.upskil.desafio.services;
 
 public enum ErrorMessage {
     // User validation message error
-    ERROR_MESSAGE_NAME("Nome inválido"),
+    ERROR_MESSAGE_FIRSTNAME("Nome inválido"),
+    ERROR_MESSAGE_LASTNAME("Nome inválido"),
     ERROR_MESSAGE_CITY("Nome de cidade inválida"),
     ERROR_MESSAGE_PASSWORD("Password inválida"),
     ERROR_MESSAGE_PASSWORD2("Password não coincide"),

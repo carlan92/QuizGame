@@ -20,25 +20,39 @@
                     </div>
 
                     <div class="perfil-row">
-                        <h3 class="registo">Registo de Utente</h3>
+                        <h3 class="registo">Registo do Utilizador</h3>
                     </div>
                 </div>
             </div>
 
 
-            <form class="registration-form" action="/public/register-user" method="post" enctype="multipart/form-data">
+            <form class="registration-form" action="/register-user" method="post">
 
                 <div class="perfil-main-col">
 
                     <div class="perfil-row">
                         <div class="cell-row cell-morada">
-                            <label for="nome_id">Nome Completo *</label>
-                            <input id="nome_id" type="text" class="form-input" value="${user.getName()}" name="name"
-                                required placeholder="O seu nome completo" />
-                            <p class="msg-error">${errorMsgName}</p>
+                            <label for="username_id">Username *</label>
+                            <input id="username_id" type="text" class="form-input" name="username" required
+                                placeholder="Introduza o username" value="${user.getUsername()}" />
+                            <p class="msg-error">${errorMsgUsername}</p>
+                        </div>
+
+                    </div>
+                    <div class="perfil-row">
+                        <div class="cell-row">
+                            <label for="primeiroNome_id">Primeiro Nome *</label>
+                            <input id="primeiroNome_id" type="text" class="form-input" value="${user.getFirstName()}"
+                                name="firstName" required placeholder="O seu primeiro nome" />
+                            <p class="msg-error">${errorMsgFirstName}</p>
+                        </div>
+                        <div class="cell-row">
+                            <label for="nome_id">Último Nome *</label>
+                            <input id="nome_id" type="text" class="form-input" value="${user.getLastName()}"
+                                name="LastName" required placeholder="O seu último nome" />
+                            <p class="msg-error">${errorMsgLastName}</p>
                         </div>
                     </div>
-
 
                     <div class="perfil-row">
                         <div class="cell-row">
@@ -47,28 +61,12 @@
                                 name="city" required placeholder="A sua localidade" />
                             <p class="msg-error">${errorMsgCity}</p>
                         </div>
-                    </div>
-
-
-
-                    <div class="perfil-row">
-
                         <div class="cell-row">
                             <label for="e-mail_id">E-mail *</label>
                             <input id="e-mail_id" type="email" class="form-input" value="${user.getEmail()}"
                                 name="email" required placeholder="O seu e-mail" />
                             <p class="msg-error">${errorMsgEmail}</p>
                         </div>
-                    </div>
-
-                    <div class="perfil-row">
-                        <div class="cell-row">
-                            <label for="username_id">Username *</label>
-                            <input id="username_id" type="text" class="form-input" name="username" required
-                                placeholder="Introduza o username" value="${user.getUsername()}" />
-                            <p class="msg-error">${errorMsgUsername}</p>
-                        </div>
-
                     </div>
 
                     <div class="perfil-row">
@@ -90,7 +88,6 @@
                 </div>
                 <button type="submit" class="btn btn-blue">Criar Conta</button>
             </form>
-
 
         </div>
     </div>

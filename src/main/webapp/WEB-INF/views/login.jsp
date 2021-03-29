@@ -18,7 +18,7 @@
             </div>
 
             <div class="main-col">
-                <form class="login-form" action="/public/login" method="post">
+                <form class="login-form" action="/login" method="post">
                     <div class="input-row">
                         <input class="form-input" type="text" name="username" id="username_id" placeholder="Username">
                     </div>
@@ -36,11 +36,11 @@
                 </c:if>
 
                 <div>
-                    <a class="login-a" href="/public/registration">Efectuar registo </a>
+                    <a class="login-a" href="/registration">Efectuar registo </a>
                 </div>
 
                 <div>
-                    <a class="login-a" href="/public/recover-password">Recuperar palavra-passe</a>
+                    <a class="login-a" href="/recover-password">Recuperar palavra-passe</a>
                 </div>
             </div>
         </div>

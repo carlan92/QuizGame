@@ -38,7 +38,7 @@ public class UserValidationServiceImpl implements UserValidationService {
 
         if (!firstName.matches("[A-Za-zÀ-ÿ']{2,}||[e]{1}")) {
             isValid = false;
-            errorModelMap.put("errorMsgName", ErrorMessage.ERROR_MESSAGE_NAME.getErrorMsg());
+            errorModelMap.put("errorMsgName", ErrorMessage.ERROR_MESSAGE_FIRSTNAME.getErrorMsg());
             return this;
         }
         return this;
@@ -49,7 +49,7 @@ public class UserValidationServiceImpl implements UserValidationService {
 
         if (!lastName.matches("[A-Za-zÀ-ÿ']{2,}||[e]{1}")) {
             isValid = false;
-            errorModelMap.put("errorMsgName", ErrorMessage.ERROR_MESSAGE_NAME.getErrorMsg());
+            errorModelMap.put("errorMsgName", ErrorMessage.ERROR_MESSAGE_LASTNAME.getErrorMsg());
             return this;
         }
         return this;
