@@ -7,5 +7,6 @@ import pt.upskil.desafio.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     User findByUsername(String username);
+    User findByEmail(String email);
     User findByUserId(Long userId);
 }

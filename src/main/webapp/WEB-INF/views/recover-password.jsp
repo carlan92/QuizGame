@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ include file="../components/head.jsp" %>
+
 </head>
 <body>
-<%@ include file="../components/sidenav-login.jsp" %>
+
 <div class="main">
     <div class="white_box box-align-left">
 

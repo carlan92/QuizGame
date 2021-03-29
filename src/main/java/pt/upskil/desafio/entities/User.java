@@ -116,9 +116,4 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
