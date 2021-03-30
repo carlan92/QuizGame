@@ -29,14 +29,14 @@ public class UserController {
 
 
     //registration
-    @GetMapping(value = "/registration")
+    @GetMapping(value = "/public/registration")
     public String showRegistrationPage(ModelMap modelMap) {
         modelMap.put("user", new User());
 
-        return "registration";
+        return "public/registration";
     }
 
-    @PostMapping(value = "/register-user")
+    @PostMapping(value = "/public/registration")
     public String registerUser(@ModelAttribute User user,
                                ModelMap mpError,
                                @RequestParam String confirmarPassword2) {
@@ -55,7 +55,7 @@ public class UserController {
             mpError.addAllAttributes(userValidationService.getErrorModelMap());
             mpError.put("user", user);
 
-            return "registration";
+            return "public/registration";
         }
 
         // Add user to database
@@ -63,26 +63,26 @@ public class UserController {
         registrationService.encryptPassword(user);
         userService.addUser(user);
 
-        return "redirect:/login";
+        return "redirect:/public/login";
     }
 
     //login
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/public/login")
     public String showLoginPage() {
 
-        return "login";
+        return "public/login";
     }
 
     //recover password
-    @GetMapping(value = "/recover-password")
+    @GetMapping(value = "/public/recover-password")
     public String showRecoverPasswordPage(ModelMap modelMap) {
         modelMap.put("username", "");
         modelMap.put("email", "");
 
-        return "recover-password";
+        return "public/recover-password";
     }
 
-    @PostMapping(value = "/recover-password")
+    @PostMapping(value = "/public/recover-password")
     public String recoverPassword(ModelMap modelMap,
                                   @RequestParam String username,
                                   @RequestParam String email,
@@ -102,6 +102,6 @@ public class UserController {
         }
         modelMap.put("username", username);
         modelMap.put("email", email);
-        return "recover-password";
+        return "public/recover-password";
     }
 }

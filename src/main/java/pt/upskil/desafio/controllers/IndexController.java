@@ -10,7 +10,7 @@ public class IndexController {
     @GetMapping(value = "/")
     public String indexPage(Model model) {
         model.addAttribute("name", "Grupo B2");
-        return "index";
+        return "public/index";
     }
 
 }

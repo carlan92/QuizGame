@@ -1,9 +1,9 @@
 body {
+    min-height: 850px;
     background-image: url('imagens/desenho-2.svg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    
     opacity: 0.9;
 }
 
@@ -92,3 +92,182 @@ footer {
     right: 0px;
     margin-bottom: 0px;
 }
+
+/*outro css*/
+
+@font-face {
+    font-family: "Lato";
+    src: url("static/imagens/fonts/Lato-Regular.ttf");
+}
+
+/*Login*/
+
+.white_box {
+    margin: 10px auto;
+    padding: 30px 50px;
+    box-shadow: 5px 0px 20px #00000029;
+    background: transparent linear-gradient(90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
+    width: 550px;
+}
+
+.logo_small {
+    margin: 20px;
+    max-height: 85px;
+}
+
+.title_next_appt {
+    color: black;
+}
+
+.main-col {
+    box-sizing: border-box;
+    margin: auto;
+    width: 350px;
+}
+
+.login-form {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input-row {
+    box-sizing: border-box;
+    position: relative;
+    margin: 25px auto;
+    width: 100%;
+}
+
+.form-control {
+    text-align: left;
+    font: normal normal bold 15px/18px Lato;
+    color: #707070;
+}
+
+.form-input {
+    position: relative;
+    box-sizing: border-box;
+    padding: 12.5px 25px;
+    text-align: left;
+    font: normal normal bold 15px/18px Lato;
+    color: #707070;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #707070;
+    border-radius: 6px;
+}
+
+.big-form-input {
+    position: relative;
+    box-sizing: border-box;
+    padding: 12.5px 25px;
+    text-align: left;
+    font: normal normal bold 15px/18px Lato;
+    color: #707070;
+    height: 80%;
+    width: 100%;
+    border: 1px solid #707070;
+    border-radius: 6px;
+}
+
+option {
+    font: normal normal bold 15px/18px Lato;
+}
+
+.login-a {
+    display: inline-block;
+    margin: 10px auto;
+    font: normal normal bold 15px/18px Lato;
+    color: #707070;
+}
+
+/*registo*/
+
+.registo {
+    margin: auto;
+}
+
+.nota {
+    font-size: 14px;
+}
+
+.registry-form .row {
+    box-sizing: border-box;
+    padding: 10px auto;
+}
+
+/*Perfil*/
+
+.perfil-main-col {
+    box-sizing: border-box;
+    margin: auto;
+    width: 100%;
+}
+
+.perfil-row {
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.cell-row {
+    position: relative;
+    box-sizing: border-box;
+    width: 45%;
+    margin: 12.5px auto;
+    font: normal normal normal 15px/18px "Lato";
+}
+
+.cell-align-center {
+    margin: auto;
+}
+
+.cell-morada {
+    width: 95%;
+}
+
+/* Recover Password */
+
+.input1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-color: #60C676;
+}
+
+.pass1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-color: #31ade0;
+}
+
+/*Buttons*/
+
+.btn-green {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #60C676;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font: normal normal bold 15px/18px "Lato";
+    letter-spacing: 0.61px;
+    width: 100%;
+    border: transparent;
+    border-radius: 6px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.btn-green:hover {
+    color: white;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+select option:disabled {
+    color: lightgrey;
+}
+
