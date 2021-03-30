@@ -25,6 +25,16 @@ public class Jogo {
     @OneToOne
     private Ronda rondaAtual;
 
+    private int gameScore;
+
+    // Constructors
     public Jogo() {
+    }
+
+    public int getGameScore(List<Ronda> rondas){
+        for(Ronda ronda: rondas){
+            gameScore+=ronda.getScore();
+        }
+        return gameScore;
     }
 }
