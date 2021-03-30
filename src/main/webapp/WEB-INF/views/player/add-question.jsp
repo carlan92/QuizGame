@@ -1,57 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPSkill Quiz
-    </title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/6afe83edf7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css"/>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ include file="../components/head.jsp" %>
 </head>
 
 <body>
-<header class="px-3 py-2 bg-dark text-black">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-            <a href="#" class="text-black-50 text-decoration-none header_logo">
-                <img src="imagens/logo_quiz.svg" alt="quiz_logo" class="logo"/>
-
-            </a>
-            <ul class="nav text-small header_buttons">
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_play.svg" alt="start_logo" class="header_icon"/>
-                        Start
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon"/>
-                        Ranking
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <img src="imagens/patch-question.svg" alt="question_logo" class="header_icon"/>
-                        Adicionar pergunta
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_logout.svg" alt="logout_logo" class="header_icon"/>
-                        Terminar Sessão
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
-
+<%@ include file="../components/header.jsp" %>
 <div class="main">
     <div class="white_box ">
 
@@ -113,13 +70,8 @@
     </div>
 </div>
 
-<footer class="bg-dark text-center text-white">
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2021 Copyright: Grupo 2 turma B Java
-    </div>
-    <!-- Copyright -->
-</footer>
+<%@ include file="../components/footer.jsp" %>
+
 </body>
 
 </html>

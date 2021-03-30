@@ -9,7 +9,6 @@
 
 <body>
 <%@ include file="../components/header.jsp" %>
-
 <div class="main">
     <div class="row middle-row3">
         <div class="col-md-4">
@@ -21,7 +20,7 @@
                         </h2>
 
                         <h3>Jogadores registados</h3>
-                        <img src="imagens/icon-player.svg" alt="controller_logo" class="dash_icon"/>
+                        <img src="imagens/icon-player.svg" alt="controller_logo" class="dash_icon" />
 
                     </div>
                 </div>
@@ -37,7 +36,7 @@
                         </h2>
 
                         <h3>Perguntas registadas</h3>
-                        <img src="imagens/icon-question.svg" alt="question_logo" class="dash_icon"/>
+                        <img src="imagens/icon-question.svg" alt="question_logo" class="dash_icon" />
 
                     </div>
                 </div>
@@ -53,7 +52,7 @@
                         </h2>
                         <h3>Posição actual no ranking
                         </h3>
-                        <img src="imagens/icon-trophy.svg" alt="trophy_logo" class="dash_icon"/>
+                        <img src="imagens/icon-trophy.svg" alt="trophy_logo" class="dash_icon" />
 
                     </div>
                 </div>
@@ -62,13 +61,8 @@
     </div>
 </div>
 
-<footer class="bg-dark text-center text-white">
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2021 Copyright: Grupo 2 turma B Java
-    </div>
-    <!-- Copyright -->
-</footer>
+<%@ include file="../components/footer.jsp" %>
+
 </body>
 
 </html>
