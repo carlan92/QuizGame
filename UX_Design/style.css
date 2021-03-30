@@ -1,3 +1,17 @@
+body {
+    height: auto;
+    background-image: url('imagens/desenho-2.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.9;
+}
+
 .logo {
     width: 70px
 }
@@ -10,7 +24,6 @@
 }
 
 .container {
-    margin: 0;
     max-width: 100%;
 }
 
@@ -20,27 +33,6 @@
 
 .header_buttons {
     margin-left: auto;
-}
-
-.main {
-    box-sizing: border-box;
-    z-index: 1;
-    overflow-x: hidden;
-    padding: 50px;
-}
-
-.main::before {
-    content: "";
-    background-image: url("imagens/background_2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.8;
-    z-index: -1;
 }
 
 .middle-row3 {
@@ -53,47 +45,37 @@
 }
 
 .main .card_box2 {
-    box-sizing: border-box;
-    height: 100%;
+    width: 400px;
     border-radius: 10px;
-    background: transparent linear-gradient(90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
-    box-shadow: 7px 7px 20px 7px grey;
+    background: transparent linear-gradient( 90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 7px 7px 20px 7px #211e1e
 }
 
 .card_box2 * {
-    box-sizing: border-box;
-    border: none;
-    display: block;
-    margin: auto;
     text-align: center;
+    margin: 0;
 }
 
 .main .card2 {
-    box-sizing: border-box;
-    height: 100%;
-    min-width: 100%;
     background-color: transparent;
 }
 
 .card-body2 {
-    box-sizing: border-box;
-    height: 100%;
-    min-width: 100%;
-    padding: 25px 30px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .card-body2 h2, h3 {
     color: #000000;
     margin: 10px;
-    font: normal normal bold 27px/30px "Lato";
+    font: normal normal bold 23px "Lato";
     letter-spacing: 1.5px;
     color: #2c363e;
 }
 
 .card-body2 span {
     font: normal normal bold 40px/24px "Lato";
-    color: #377bd4;
-    padding: 15px;
+    color: #20aa37;
 }
 
 .card-body2 p {
@@ -105,6 +87,18 @@
 }
 
 .dash_icon {
-    width: 60px;
-    padding: 10px;
+    width: 50px;
+    padding: 5px;
+}
+
+.add-question-img {
+width: 20%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
 }
