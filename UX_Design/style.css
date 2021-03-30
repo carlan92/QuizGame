@@ -1,14 +1,9 @@
 body {
-    height: auto;
     background-image: url('imagens/desenho-2.svg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    z-index: -1;
+    
     opacity: 0.9;
 }
 
@@ -47,8 +42,8 @@ body {
 .main .card_box2 {
     width: 400px;
     border-radius: 10px;
-    background: transparent linear-gradient( 90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
-    box-shadow: 7px 7px 20px 7px #211e1e
+    background: transparent linear-gradient( 90deg, #37464dc4 100%, #9490907e 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 5px 5px 100px 5px #3287a8
 }
 
 .card_box2 * {
@@ -66,24 +61,15 @@ body {
 }
 
 .card-body2 h2, h3 {
-    color: #000000;
+    color: #ffffff;
     margin: 10px;
     font: normal normal bold 23px "Lato";
     letter-spacing: 1.5px;
-    color: #2c363e;
 }
 
 .card-body2 span {
     font: normal normal bold 40px/24px "Lato";
-    color: #20aa37;
-}
-
-.card-body2 p {
-    color: #36383b;
-    font-size: 14px;
-    line-height: 20px;
-    font-family: "Lato";
-    margin: 10px;
+    color: #b7d7f1;
 }
 
 .dash_icon {
@@ -92,7 +78,11 @@ body {
 }
 
 .add-question-img {
-width: 20%;
+    width: 20%;
+}
+
+input[type="radio"] {
+    cursor: pointer;
 }
 
 footer {
