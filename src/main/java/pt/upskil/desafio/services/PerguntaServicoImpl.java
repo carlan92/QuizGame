@@ -1,10 +1,12 @@
 package pt.upskil.desafio.services;
 
 import net.minidev.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -16,8 +18,9 @@ import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
 import pt.upskil.desafio.exceptions.InvalidPerguntaException;
 import pt.upskil.desafio.exceptions.ObterEstatisticaException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
+import pt.upskil.desafio.repositories.PerguntaRepository;
+import pt.upskil.desafio.repositories.RespostaRepository;
 import pt.upskil.desafio.services.apiUtils.EstatisticaResponse;
-import pt.upskil.desafio.services.apiUtils.ListaPerguntasResponse;
 import pt.upskil.desafio.services.apiUtils.PerguntaResponse;
 import pt.upskil.desafio.services.apiUtils.StatusResponse;
 
@@ -26,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class PerguntaServicoImpl implements PerguntaServico {
 
     public static void main(String[] args) {
@@ -47,7 +51,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
 
         try {
             System.out.println(perguntaServico.obterEstatisticas());
-            for (Pergunta p : perguntaServico.obterPerguntas(Dificuldade.FACIL)) {
+            for (Pergunta p : perguntaServico.obterPerguntas(Dificuldade.IMPOSSIVEL)) {
                 System.out.println(p.getDescricao());
                 for (Resposta r : p.getRespostas())
                     System.out.println(r.getTexto());
@@ -67,6 +71,10 @@ public class PerguntaServicoImpl implements PerguntaServico {
     private static final String URL_ADDICIONAR_PERGUNTA = "https://serro.pt/perguntas/nova";
     private static final String URL_PEDIR_PERGUNTAS = "https://serro.pt/perguntas/%s"; //%s place-holder para difficuldade
     private static final String URL_PEDIR_ESTATISTICAS = "https://serro.pt/perguntas";
+
+    @Autowired
+    private PerguntaRepository perguntaRepository;
+    private RespostaRepository respostaRepository;
 
     @Override
     public void addicionarPergunta(Pergunta pergunta) throws AdicionarPerguntaException {
@@ -113,7 +121,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
             throw new ObterPerguntasException();
         }
 
-        if (response.getBody() == null ) {
+        if (response.getBody() == null) {
             throw new ObterPerguntasException();
         }
 
@@ -124,18 +132,28 @@ public class PerguntaServicoImpl implements PerguntaServico {
             pergunta.setDescricao(pr.getPergunta());
 
             List<Resposta> respostas = new ArrayList<>(Pergunta.NUM_RESPOSTAS);
-            respostas.add(new Resposta(pergunta, pr.getResposta1(), pr.getCerta().equals("1")));
-            respostas.add(new Resposta(pergunta, pr.getResposta2(), pr.getCerta().equals("2")));
-            respostas.add(new Resposta(pergunta, pr.getResposta3(), pr.getCerta().equals("3")));
-            respostas.add(new Resposta(pergunta, pr.getResposta4(), pr.getCerta().equals("4")));
+            Resposta r1 = new Resposta(pergunta, pr.getResposta1(), pr.getCerta().equals("1"));
+            Resposta r2 = new Resposta(pergunta, pr.getResposta2(), pr.getCerta().equals("2"));
+            Resposta r3 = new Resposta(pergunta, pr.getResposta3(), pr.getCerta().equals("3"));
+            Resposta r4 = new Resposta(pergunta, pr.getResposta4(), pr.getCerta().equals("4"));
+
+            respostas.add(r1);
+            respostas.add(r2);
+            respostas.add(r3);
+            respostas.add(r4);
+
             pergunta.setRespostas(respostas);
             pergunta.setDificuldade(Dificuldade.getDifficuldadeFromApiText(pr.getDificuldade()));
-            // TODO set da resposta certa
+
+            respostaRepository.save(r1);
+            respostaRepository.save(r2);
+            respostaRepository.save(r3);
+            respostaRepository.save(r4);
 
             perguntas.add(pergunta);
-        }
 
-        //TODO salvar perguntas e respostas na base dados ?
+            perguntaRepository.save(pergunta);
+        }
 
         return perguntas;
     }
@@ -150,9 +168,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
                 UnknownHttpStatusCodeException e) {
             throw new ObterEstatisticaException();
         }
-       /* if (response == null || response.getStatus().equals("error")) {
-            throw new ObterEstatisticaException();
-        }*/
+
         Map<String, Integer> result = new HashMap<>();
         result.put("total", Integer.valueOf(response.getTotal()));
         result.put("fáceis", Integer.valueOf(response.getFaceis()));
@@ -165,5 +181,16 @@ public class PerguntaServicoImpl implements PerguntaServico {
     @Override
     public int obterNumeroTotalDePerguntas() throws ObterEstatisticaException {
         return obterEstatisticas().get("total");
+    }
+
+    //@Override
+    public List<Pergunta> obter15Perguntas() {
+        List<Pergunta> resposta = new ArrayList<>();
+
+        for (Dificuldade dificuldade : Dificuldade.values()) {
+            //obterPerguntas(dificuldade);
+        }
+
+        return resposta;
     }
 }

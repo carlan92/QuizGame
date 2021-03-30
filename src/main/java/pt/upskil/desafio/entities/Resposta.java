@@ -13,8 +13,11 @@ public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @ManyToOne
+    @JoinColumn(name = "pergunta_id")
     private Pergunta pergunta;
+
     private String texto;
     private boolean certa;
 

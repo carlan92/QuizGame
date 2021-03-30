@@ -14,12 +14,17 @@ public class Ronda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int numero;
+
     @OneToOne
     private Pergunta pergunta;
+
     @OneToOne
     private Resposta respostaEscolhida;
+
     @ManyToOne
+    @JoinColumn(name = "jogo_id")
     private Jogo jogo;
+
     public Ronda() {
     }
 }

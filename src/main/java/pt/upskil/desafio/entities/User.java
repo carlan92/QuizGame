@@ -8,9 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pt.upskil.desafio.configuration.Role;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ import java.util.List;
 public class User {
     // Attributes
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String firstName;
     private String lastName;
@@ -26,6 +24,9 @@ public class User {
     private String city;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Jogo> jogos;
 
     //Constructors
     public User() {

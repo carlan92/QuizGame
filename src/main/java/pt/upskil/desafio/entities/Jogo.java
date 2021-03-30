@@ -14,11 +14,17 @@ public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long user_id;
-    @OneToMany
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "jogo")
     private List<Ronda> rondas;
+
     @OneToOne
     private Ronda rondaAtual;
+
     public Jogo() {
     }
 }
