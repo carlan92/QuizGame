@@ -9,17 +9,30 @@ import pt.upskil.desafio.repositories.JogoRepository;
 import java.util.List;
 
 @Service
-public class JogoServiceImpl implements JogoService{
+public class JogoServiceImpl implements JogoService {
     @Autowired
     JogoRepository jogoRepository;
 
     @Override
-    public int highScore(User user){
+    public int highScore(User user) {
         List<Jogo> jogos = jogoRepository.findAllByUserOrderByGameScoreDesc(user);
-        if(jogos == null || jogos.isEmpty()){
+        if (jogos == null || jogos.isEmpty()) {
             return 0;
         }
         return jogos.get(0).getGameScore();
+    }
+
+    @Override
+    public int highScorePosition(User user) {
+        List<Jogo> jogos = jogoRepository.findAllByOrderByGameScoreDesc();
+
+        for (int i = 0; i < jogos.size(); i++) {
+            if (jogos.get(0).getUser().equals(user)) {
+                return i + 1;
+            }
+        }
+
+        return jogos.size() + 1;
     }
 
     @Override

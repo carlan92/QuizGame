@@ -109,8 +109,10 @@ public class UserController {
         return "public/recover-password";
     }
 
-    @GetMapping({"/player/dashboard","/player"})
+    @GetMapping({"/player/dashboard", "/player"})
     public String goToDashboard(ModelMap modelMap) {
+        User user = userService.currentUser();
+
         long nrJogadores = userService.countAllUsers();
 
         int nrPerguntas;
@@ -120,11 +122,12 @@ public class UserController {
             nrPerguntas = 0;
         }
 
-        int nrPontos = jogoService.highScore(userService.currentUser());
+        int posicaoRanking = jogoService.highScorePosition(user);
+        int nrPontos = jogoService.highScore(user);
 
         modelMap.put("nrJogadores", nrJogadores);
         modelMap.put("nrPerguntas", nrPerguntas);
-        modelMap.put("posicaoRanking", 2);
+        modelMap.put("posicaoRanking", posicaoRanking);
         modelMap.put("nrPontos", nrPontos);
         return "/player/dashboard";
     }
@@ -147,7 +150,8 @@ public class UserController {
                                     @RequestParam int respostaCerta,
                                     @RequestParam int dificuldadeType) {
 
-        Pergunta perguntaObj = Pergunta.criarPergunta(pergunta,
+        Pergunta perguntaObj = Pergunta.criarPergunta(
+                pergunta,
                 resposta1,
                 resposta2,
                 resposta3,
@@ -177,13 +181,13 @@ public class UserController {
     }
 
     //ranking
-    @GetMapping(value ="/player/ranking")
-    public String goToRankingTable(ModelMap modelMap){
-        List<Jogo> jogos =new ArrayList<>();
+    @GetMapping(value = "/player/ranking")
+    public String goToRankingTable(ModelMap modelMap) {
+        List<Jogo> jogos = new ArrayList<>();
         jogos.addAll(jogoService.findAll());
         jogos.sort(Collections.reverseOrder());
 
-        modelMap.put("jogos",jogos);
+        modelMap.put("jogos", jogos);
 
         return "player/ranking";
     }
