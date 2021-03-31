@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Lato";
-    src: url("static/imagens/fonts/Lato-Regular.ttf");
+    src: url("/imagens/fonts/Lato-Regular.ttf");
 }
 
 body {
@@ -105,11 +105,6 @@ footer {
 }
 
 /*outro css*/
-
-@font-face {
-    font-family: "Lato";
-    src: url("static/imagens/fonts/Lato-Regular.ttf");
-}
 
 /*Login*/
 
@@ -280,6 +275,18 @@ button:focus {
 
 select option:disabled {
     color: lightgrey;
+}
+
+.btn-check {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+.btn-check:active + .btn-outline-success, .btn-check:checked + .btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
 }
 
 /*game*/
