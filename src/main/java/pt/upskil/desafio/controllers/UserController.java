@@ -191,4 +191,11 @@ public class UserController {
 
         return "player/ranking";
     }
+
+    //game
+    @GetMapping(value = "/player/game")
+    public String startGame (ModelMap modelMap) {
+
+        return "player/game";
+    }
 }

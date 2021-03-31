@@ -12,7 +12,7 @@
             </a>
             <ul class="nav text-small header_buttons">
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="/player/game" class="nav-link text-white">
                         <img src="/imagens/icon_play.svg" alt="start_logo" class="header_icon" />
                         Start
                     </a>
