@@ -79,10 +79,10 @@
                     <label class="btn btn-outline-success btn-w100" for="btnradio2">${ronda.getPergunta().getRespostas().get(1).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100" for="btnradio3">Algarve</label>
+                    <label class="btn btn-outline-success btn-w100" for="btnradio3">${ronda.getPergunta().getRespostas().get(2).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100" for="btnradio4">Coimbra</label>
+                    <label class="btn btn-outline-success btn-w100" for="btnradio4">${ronda.getPergunta().getRespostas().get(3).getTexto()}</label>
                 </div>
 
 

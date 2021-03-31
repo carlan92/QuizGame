@@ -145,15 +145,17 @@ public class PerguntaServicoImpl implements PerguntaServico {
             respostas.add(r4);
 
             perguntaRepository.save(pergunta);
+            respostaRepository.save(r1);
+            respostaRepository.save(r2);
+            respostaRepository.save(r3);
+            respostaRepository.save(r4);
+
             pergunta.setRespostas(respostas);
             pergunta.setDificuldade(Dificuldade.getDificuldadeFromApiText(pr.getDificuldade()));
 
             perguntaRepository.save(pergunta);
 
-            respostaRepository.save(r1);
-            respostaRepository.save(r2);
-            respostaRepository.save(r3);
-            respostaRepository.save(r4);
+
 
             perguntas.add(pergunta);
         }
