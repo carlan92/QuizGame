@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface JogoRepository extends JpaRepository<Jogo, Long> {
     List<Jogo> findAllByUserOrderByGameScoreDesc(User user);
+    List<Jogo> findAll();
 }

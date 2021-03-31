@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="/player/ranking" class="nav-link text-white">
                         <img src="/imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />
                         Ranking
                     </a>

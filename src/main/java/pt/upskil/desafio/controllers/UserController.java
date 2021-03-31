@@ -7,16 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pt.upskil.desafio.entities.Dificuldade;
-import pt.upskil.desafio.entities.Pergunta;
-import pt.upskil.desafio.entities.Resposta;
-import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.entities.*;
 import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
 import pt.upskil.desafio.exceptions.ObterEstatisticaException;
 import pt.upskil.desafio.services.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -131,6 +129,7 @@ public class UserController {
         return "/player/dashboard";
     }
 
+    //adicionar pergunta
     @GetMapping("/player/add-question")
     public String showPageAdicionarPergunta(ModelMap modelMap) {
         List<Dificuldade> dificuldades = Arrays.asList(Dificuldade.values());
@@ -177,5 +176,15 @@ public class UserController {
         return "/player/dashboard";
     }
 
+    //ranking
+    @GetMapping(value ="/player/ranking")
+    public String goToRankingTable(ModelMap modelMap){
+        List<Jogo> jogos =new ArrayList<>();
+        jogos.addAll(jogoService.findAll());
+        jogos.sort(Collections.reverseOrder());
 
+        modelMap.put("jogos",jogos);
+
+        return "player/ranking";
+    }
 }

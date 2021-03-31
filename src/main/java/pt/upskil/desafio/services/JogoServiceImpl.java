@@ -21,4 +21,10 @@ public class JogoServiceImpl implements JogoService{
         }
         return jogos.get(0).getGameScore();
     }
+
+    @Override
+    public List<Jogo> findAll() {
+        return jogoRepository.findAll();
+    }
+
 }
