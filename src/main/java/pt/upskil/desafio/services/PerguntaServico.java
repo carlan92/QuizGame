@@ -19,5 +19,7 @@ public interface PerguntaServico {
 
     int obterNumeroTotalDePerguntas() throws ObterEstatisticaException;
 
+    List<Pergunta> obter15Perguntas() throws ObterPerguntasException;
+
 }
 

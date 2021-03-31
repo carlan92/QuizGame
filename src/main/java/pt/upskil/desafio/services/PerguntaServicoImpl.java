@@ -12,6 +12,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.UnknownHttpStatusCodeException;
 import pt.upskil.desafio.entities.Dificuldade;
+import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Pergunta;
 import pt.upskil.desafio.entities.Resposta;
 import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
@@ -183,14 +184,14 @@ public class PerguntaServicoImpl implements PerguntaServico {
         return obterEstatisticas().get("total");
     }
 
-    //@Override
-    public List<Pergunta> obter15Perguntas() {
-        List<Pergunta> resposta = new ArrayList<>();
+    @Override
+    public List<Pergunta> obter15Perguntas() throws ObterPerguntasException {
+        List<Pergunta> perguntas = new ArrayList<>();
 
         for (Dificuldade dificuldade : Dificuldade.values()) {
-            //obterPerguntas(dificuldade);
+            perguntas.addAll(obterPerguntas(dificuldade));
         }
 
-        return resposta;
+        return perguntas;
     }
 }

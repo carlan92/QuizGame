@@ -24,8 +24,6 @@ public class Ronda {
     @ManyToOne
     @JoinColumn(name = "jogo_id")
     private Jogo jogo;
-    private int score;
-
 
 
     public Ronda() {

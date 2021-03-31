@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-public class Jogo implements Comparable<Jogo>{
+public class Jogo implements Comparable<Jogo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +38,13 @@ public class Jogo implements Comparable<Jogo>{
         this.gameScore = gameScore;
     }
 
-    public int getGameScore(List<Ronda> rondas){
-        for(Ronda ronda: rondas){
-            gameScore+=ronda.getScore();
-        }
-        return gameScore;
+    public void addScore(int score){
+        gameScore += score;
     }
+
+
     @Override
     public int compareTo(Jogo o) {
-        return this.getGameScore()-o.getGameScore();
+        return this.gameScore - o.gameScore;
     }
 }

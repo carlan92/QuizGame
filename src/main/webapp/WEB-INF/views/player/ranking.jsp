@@ -31,12 +31,14 @@
                         <tbody>
 
                             <!-- For -->
+                            <c:set var="pos" value="1" scope="page" />
                             <c:forEach var="jogo" items="${jogos}">
                                 <tr class="ranking-table-details">
-                                    <td>posição</td>
+                                    <td>${pos}</td>
                                     <td>${jogo.getUser().getUsername()}</td>
                                     <td>${jogo.getGameScore()}</td>
                                 </tr>
+                                <c:set var="pos" value="${pos + 1}" scope="page"/>
                             </c:forEach>
                         </tbody>
                     </table>
