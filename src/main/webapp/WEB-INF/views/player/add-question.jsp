@@ -12,60 +12,63 @@
 <div class="main">
     <div class="white_box ">
 
-        <div class="card mb-3">
-            <img src="imagens/add-question.svg" alt="add-question" class="add-question-img"/>
-            <div class="card-body">
-                <h5 class="card-title">Adicionar pergunta</h5>
-                <input type="text" class="form-control" aria-label="Text input with radio button">
+        <div class="perfil-row">
+            <img src="imagens/add-question.svg" alt="add-question" class="add-question-img" />
+            <h3 class="title_next_appt">Adicionar pergunta</h3>
 
-                <div class="input-group">
-                    <div class="input-group-text">
+        </div>
 
-                        <input class="form-check-input mt-0" type="radio" name="selection" checked value=""
-                               aria-label="Radio button for following text input">
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio button">
+        <div class="card-body">
+            <input type="text" class="form-control" placeholder="Pergunta">
+
+            <div class="input-group">
+                <div class="input-group-text">
+
+                    <input class="form-check-input mt-0" type="radio" name="selection" checked value=""
+                           aria-label="Radio button for following text input">
                 </div>
-                <div class="input-group">
-                    <div class="input-group-text">
+                <input type="text" class="form-control" placeholder="Resposta 1">
 
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                               aria-label="Radio button for following text input">
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio button">
-
-
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
-
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                               aria-label="Radio button for following text input">
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio button">
-
-
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
-
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                               aria-label="Radio button for following text input">
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio button">
-
-
-                </div>
-                <div>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <button type="button" class="btn btn-success">Success</button>
             </div>
+            <div class="input-group">
+                <div class="input-group-text">
+
+                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                           aria-label="Radio button for following text input">
+                </div>
+                <input type="text" class="form-control" placeholder="Resposta 2">
+
+
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">
+
+                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                           aria-label="Radio button for following text input">
+                </div>
+                <input type="text" class="form-control" placeholder="Resposta 3">
+
+
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">
+
+                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                           aria-label="Radio button for following text input">
+                </div>
+                <input type="text" class="form-control" placeholder="Resposta 4">
+
+
+            </div>
+            <div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Escolha o nível de dificuldade</option>
+                    <option value="1">Fácil</option>
+                    <option value="2">Intermédia</option>
+                    <option value="3">Díficl</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-green">Guardar</button>
         </div>
     </div>
 </div>
