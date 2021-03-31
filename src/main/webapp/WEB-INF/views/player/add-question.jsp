@@ -25,7 +25,7 @@
 
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=1
+                        <input class="" type="radio" name="respostaCerta" value=1
                         <c:if test="${respostaCerta == 1}"> checked </c:if>
                         <c:if test="${empty respostaCerta}"> checked </c:if>>
                     </div>
@@ -35,7 +35,7 @@
 
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=2
+                        <input class="" type="radio" name="respostaCerta" value=2
                         <c:if test="${respostaCerta == 2}"> checked </c:if>>
                     </div>
                     <input type="text" class="form-control" placeholder="Resposta 2" name="resposta2"
@@ -44,7 +44,7 @@
 
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=3
+                        <input class="" type="radio" name="respostaCerta" value=3
                         <c:if test="${respostaCerta == 3}"> checked </c:if>>
                     </div>
                     <input type="text" class="form-control" placeholder="Resposta 3" name="resposta3"
@@ -53,7 +53,7 @@
 
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=4
+                        <input class="" type="radio" name="respostaCerta" value=4
                         <c:if test="${respostaCerta == 4}"> checked </c:if>>
                     </div>
                     <input type="text" class="form-control" placeholder="Resposta 4" name="resposta4"

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Lato";
+  src: url("static/imagens/fonts/Lato-Regular.ttf");
+}
+
 body {
   min-height: 850px;
   background-image: url('imagens/desenho-2.svg');
@@ -5,6 +10,12 @@ body {
   background-attachment: fixed;
   background-size: cover;
   opacity: 0.9;
+  position: relative;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Lato";
 }
 
 .logo {
@@ -107,7 +118,7 @@ footer {
   padding: 30px 50px;
   box-shadow: 5px 0px 20px #00000029;
   background: transparent linear-gradient(90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
-  width: 550px;
+  width: 750px;
 }
 
 .logo_small {
@@ -271,3 +282,16 @@ select option:disabled {
   color: lightgrey;
 }
 
+/*game*/
+
+.game-box {
+  width: 1000px;
+}
+
+.status-bar {
+  margin: auto;
+}
+
+.btn-w20 {
+  width: 20%;
+}
