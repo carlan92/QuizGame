@@ -289,9 +289,24 @@ select option:disabled {
 }
 
 .status-bar {
-    margin: auto;
+    margin: 0px;
+    text-align: center;
+}
+
+.nav-right {
+    margin-left: 230px
 }
 
 .btn-w20 {
     width: 20%;
+    margin: 10px;
+}
+
+.btn-w100 {
+    min-width: 500px;
+}
+
+.text-center {
+    display: block;
+    margin: auto;
 }
