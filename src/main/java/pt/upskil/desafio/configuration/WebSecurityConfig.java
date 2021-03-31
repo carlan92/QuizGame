@@ -29,16 +29,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/public/**").permitAll()
+                .antMatchers("/*.css", "/fonts/**", "/imagens/**", "*.html" , "*.ico").permitAll()
                 .anyRequest().authenticated()
 
                 //login
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/public/login")
                 //.loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
-                .failureUrl("/login?error=true")
+                .failureUrl("/public/login?error=true")
 
                 //logout
                 .and()

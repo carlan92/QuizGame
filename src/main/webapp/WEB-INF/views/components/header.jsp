@@ -1,3 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <header class="px-3 py-2 bg-dark text-black">
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-lg-start">

@@ -4,11 +4,11 @@
 
 <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+    <%@ include file="../components/head.jsp" %>
 </head>
 
 <body>
-<%@ include file="../components/header.jsp" %>
+<%@ include file="../components/header-zero.jsp" %>
 
 <div class="main">
     <div class="white_box">
