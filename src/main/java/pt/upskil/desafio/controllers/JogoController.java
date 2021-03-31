@@ -2,55 +2,40 @@ package pt.upskil.desafio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pt.upskil.desafio.entities.Jogo;
-import pt.upskil.desafio.entities.Pergunta;
+
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import pt.upskil.desafio.entities.Ronda;
+import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
-import pt.upskil.desafio.services.PerguntaServico;
+import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class JogoController {
     @Autowired
-    UserService userService;
+    JogoService jogoService;
     @Autowired
-    PerguntaServico perguntaServico;
+    UserService userService;
 
-    public void jogo() {
+    @GetMapping("/player/game")
+    public String iniciarJogo(ModelMap modelMap) {
+        User user = userService.currentUser();
 
-        // iniciar jogo
-        Jogo jogo = new Jogo();
-        jogo.setUser(userService.currentUser());
-
-
-        // criar obter perguntas
-        List<Pergunta> perguntas;
         try {
-            perguntas = perguntaServico.obter15Perguntas();
+            jogoService.iniciarJogo(user);
         } catch (ObterPerguntasException e) {
             e.printStackTrace();
-            // TODO erros
-            return;
+            // TODO return e map para página de erro
         }
 
-        // criar rondas
-        List<Ronda> rondas = new ArrayList<>();
 
-        int nrPergunta = 1;
-        for (Pergunta pergunta : perguntas) {
-            Ronda ronda = new Ronda(nrPergunta, pergunta, jogo);
-            // TODO save ronda
-            rondas.add(ronda);
-            nrPergunta += 1;
-        }
+        Ronda ronda = user.getJogoCorrente().getRondaAtual();
+        System.out.println(ronda.getPergunta().getRespostas());
 
-        jogo.setRondas(rondas);
-        jogo.setRondaAtual(rondas.get(0));
-
-        // TODO save Game
-
+        modelMap.put("ronda", ronda);
+        return "player/game";
     }
+
 }

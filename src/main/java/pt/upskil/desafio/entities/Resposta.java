@@ -29,4 +29,14 @@ public class Resposta {
         this.texto = texto;
         this.certa = certa;
     }
+
+    @Override
+    public String toString() {
+        return "Resposta{" +
+                "id=" + id +
+                ", pergunta=" + pergunta.getDescricao() +
+                ", texto='" + texto + '\'' +
+                ", certa=" + certa +
+                '}';
+    }
 }

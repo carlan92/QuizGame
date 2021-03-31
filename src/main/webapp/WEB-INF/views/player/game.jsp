@@ -66,17 +66,17 @@
         <div class="white_box ">
 
             <div class="perfil-row text-center">
-                <h3 class="title_next_appt">Qual a capital de Portugal?</h3>
+                <h3 class="title_next_appt">${ronda.getPergunta().getDescricao()}</h3>
             </div>
 
             <div class="card-body text-center">
 
                 <div class="btn-group-vertical" role="group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-success btn-w100" for="btnradio1">Lisboa</label>
+                    <label class="btn btn-outline-success btn-w100" for="btnradio1">${ronda.getPergunta().getRespostas().get(0).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100" for="btnradio2">Porto</label>
+                    <label class="btn btn-outline-success btn-w100" for="btnradio2">${ronda.getPergunta().getRespostas().get(1).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                     <label class="btn btn-outline-success btn-w100" for="btnradio3">Algarve</label>

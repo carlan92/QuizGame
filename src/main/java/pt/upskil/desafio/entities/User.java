@@ -1,6 +1,8 @@
 package pt.upskil.desafio.entities;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class User {
     // Attributes
     @Id
@@ -27,6 +31,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Jogo> jogos;
+
+    @OneToOne
+    private Jogo jogoCorrente;
 
     //Constructors
     public User() {
@@ -43,62 +50,6 @@ public class User {
     }
 
     //Methods
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<GrantedAuthority> getAuthorities(){
         List<GrantedAuthority> roles=new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(Role.ROLE_USER.name()));

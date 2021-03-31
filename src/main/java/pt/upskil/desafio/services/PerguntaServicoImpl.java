@@ -75,6 +75,7 @@ public class PerguntaServicoImpl implements PerguntaServico {
 
     @Autowired
     private PerguntaRepository perguntaRepository;
+    @Autowired
     private RespostaRepository respostaRepository;
 
     @Override
@@ -143,8 +144,11 @@ public class PerguntaServicoImpl implements PerguntaServico {
             respostas.add(r3);
             respostas.add(r4);
 
+            perguntaRepository.save(pergunta);
             pergunta.setRespostas(respostas);
             pergunta.setDificuldade(Dificuldade.getDificuldadeFromApiText(pr.getDificuldade()));
+
+            perguntaRepository.save(pergunta);
 
             respostaRepository.save(r1);
             respostaRepository.save(r2);
@@ -152,8 +156,6 @@ public class PerguntaServicoImpl implements PerguntaServico {
             respostaRepository.save(r4);
 
             perguntas.add(pergunta);
-
-            perguntaRepository.save(pergunta);
         }
 
         return perguntas;

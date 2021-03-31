@@ -6,4 +6,5 @@ import pt.upskil.desafio.entities.Resposta;
 
 @Repository
 public interface RespostaRepository extends JpaRepository<Resposta, Long> {
+
 }
