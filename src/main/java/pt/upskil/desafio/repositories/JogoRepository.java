@@ -2,12 +2,12 @@ package pt.upskil.desafio.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.User;
 
+import java.util.List;
+
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
-    User findByUsername(String username);
-    User findByEmail(String email);
-    User findByUserId(Long userId);
-    long count();
+public interface JogoRepository extends JpaRepository<Jogo, Long> {
+    List<Jogo> findAllByUserOrderByGameScoreDesc(User user);
 }

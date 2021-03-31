@@ -16,7 +16,7 @@
                 <div class="card2">
                     <div class="card-body2">
                         <h2>
-                            <span>127</span>
+                            <span>${nrJogadores}</span>
                         </h2>
 
                         <h3>Jogadores registados</h3>
@@ -32,7 +32,7 @@
                 <div class="card2">
                     <div class="card-body2">
                         <h2>
-                            <span>100</span>
+                            <span>${nrPerguntas}</span>
                         </h2>
 
                         <h3>Perguntas registadas</h3>
@@ -48,7 +48,7 @@
                 <div class="card2">
                     <div class="card-body2">
                         <h2>
-                            <span>#2</span>
+                            <span>#${posicaoRanking} - ${nrPontos} xp</span>
                         </h2>
                         <h3>Posição actual no ranking
                         </h3>

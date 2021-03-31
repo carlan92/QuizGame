@@ -20,7 +20,7 @@
 
         <form method="post" action="/player/add-question">
             <div class="card-body">
-                <input type="text" class="form-control" placeholder="Pergunta" name="pergunta"
+                <input required type="text" class="form-control" placeholder="Pergunta" name="pergunta"
                 <c:if test="${not empty pergunta}"> value="${pergunta}"</c:if>>
 
                 <div class="input-group">
@@ -29,7 +29,7 @@
                         <c:if test="${respostaCerta == 1}"> checked </c:if>
                         <c:if test="${empty respostaCerta}"> checked </c:if>>
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 1" name="resposta1"
+                    <input required type="text" class="form-control" placeholder="Resposta 1" name="resposta1"
                     <c:if test="${not empty resposta1}"> value="${resposta1}"</c:if>>
                 </div>
 
@@ -38,7 +38,7 @@
                         <input class="" type="radio" name="respostaCerta" value=2
                         <c:if test="${respostaCerta == 2}"> checked </c:if>>
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 2" name="resposta2"
+                    <input required type="text" class="form-control" placeholder="Resposta 2" name="resposta2"
                     <c:if test="${not empty resposta2}"> value="${resposta2}"</c:if>>
                 </div>
 
@@ -47,7 +47,7 @@
                         <input class="" type="radio" name="respostaCerta" value=3
                         <c:if test="${respostaCerta == 3}"> checked </c:if>>
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 3" name="resposta3"
+                    <input required type="text" class="form-control" placeholder="Resposta 3" name="resposta3"
                     <c:if test="${not empty resposta3}"> value="${resposta3}"</c:if>>
                 </div>
 
@@ -56,12 +56,12 @@
                         <input class="" type="radio" name="respostaCerta" value=4
                         <c:if test="${respostaCerta == 4}"> checked </c:if>>
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 4" name="resposta4"
+                    <input required type="text" class="form-control" placeholder="Resposta 4" name="resposta4"
                     <c:if test="${not empty resposta4}"> value="${resposta4}"</c:if>>
                 </div>
 
                 <div>
-                    <select class="form-select" name="dificuldadeType" required>
+                    <select required class="form-select" name="dificuldadeType">
                         <option selected disabled>Escolha o nível de dificuldade</option>
                         <c:forEach var="dificuldade" items="${dificuldades}">
                             <option value=${dificuldade.getType()}

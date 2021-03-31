@@ -10,19 +10,17 @@ public interface UserService {
 
     boolean validateUser(String username, String password);
 
+    User currentUser();
+
     void addUser(User user);
 
-    User findByUsername(String username);
-
-    User findByUserId(Long userId);
-
     User findUser(String username);
-
-    User currentUser();
 
     List<GrantedAuthority> getAuthorities(String username);
 
     Role getUserRole(User user);
 
     boolean validateUserMail(String username, String email);
+
+    long countAllUsers();
 }

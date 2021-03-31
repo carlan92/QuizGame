@@ -66,12 +66,12 @@ public class UserServiceImpl implements UserService {
         return user.getAuthorities();
     }
 
-    @Override
+    //@Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    @Override
+    //@Override
     public User findByUserId(Long userId){
         return userRepository.findByUserId(userId);
     }
@@ -91,6 +91,11 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public long countAllUsers(){
+        return userRepository.count();
     }
 
 }

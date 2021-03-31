@@ -12,10 +12,8 @@ import pt.upskil.desafio.entities.Pergunta;
 import pt.upskil.desafio.entities.Resposta;
 import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
-import pt.upskil.desafio.services.PerguntaServico;
-import pt.upskil.desafio.services.RegistrationService;
-import pt.upskil.desafio.services.UserService;
-import pt.upskil.desafio.services.UserValidationService;
+import pt.upskil.desafio.exceptions.ObterEstatisticaException;
+import pt.upskil.desafio.services.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +29,10 @@ public class UserController {
     UserValidationService userValidationService;
     @Autowired
     PerguntaServico perguntaServico;
+
+    @Autowired
+    JogoService jogoService;
+
 
     //registration
     @GetMapping(value = "/public/registration")
@@ -71,7 +73,7 @@ public class UserController {
     }
 
     //login
-    @GetMapping(value = {"/public/login","/"})
+    @GetMapping(value = {"/public/login", "/"})
     public String showLoginPage() {
 
         return "public/login";
@@ -109,8 +111,23 @@ public class UserController {
         return "public/recover-password";
     }
 
-    @GetMapping(value ={"/player/dashboard","/player"})
-    public String goToDashboard(){
+    @GetMapping({"/player/dashboard","/player"})
+    public String goToDashboard(ModelMap modelMap) {
+        long nrJogadores = userService.countAllUsers();
+
+        int nrPerguntas;
+        try {
+            nrPerguntas = perguntaServico.obterEstatisticas().get("total");
+        } catch (ObterEstatisticaException e) {
+            nrPerguntas = 0;
+        }
+
+        int nrPontos = jogoService.highScore(userService.currentUser());
+
+        modelMap.put("nrJogadores", nrJogadores);
+        modelMap.put("nrPerguntas", nrPerguntas);
+        modelMap.put("posicaoRanking", 2);
+        modelMap.put("nrPontos", nrPontos);
         return "/player/dashboard";
     }
 
@@ -142,6 +159,7 @@ public class UserController {
         try {
             perguntaServico.addicionarPergunta(perguntaObj);
         } catch (AdicionarPerguntaException e) {
+            List<Dificuldade> dificuldades = Arrays.asList(Dificuldade.values());
             modelMap.put("pergunta", pergunta);
             modelMap.put("resposta1", resposta1);
             modelMap.put("resposta2", resposta2);
@@ -149,6 +167,7 @@ public class UserController {
             modelMap.put("resposta4", resposta4);
             modelMap.put("respostaCerta", respostaCerta);
             modelMap.put("dificuldadeType", dificuldadeType);
+            modelMap.put("dificuldades", dificuldades);
             modelMap.put("msgError", "Não foi possível adicionar a questão.");
             return "/player/add-question";
         }
