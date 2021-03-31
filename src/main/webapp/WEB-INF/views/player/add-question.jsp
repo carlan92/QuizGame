@@ -13,63 +13,71 @@
     <div class="white_box ">
 
         <div class="perfil-row">
-            <img src="/imagens/add-question.svg" alt="add-question" class="add-question-img" />
+            <img src="/imagens/add-question.svg" alt="add-question" class="add-question-img"/>
             <h3 class="title_next_appt">Adicionar pergunta</h3>
 
         </div>
 
-        <div class="card-body">
-            <input type="text" class="form-control" placeholder="Pergunta">
+        <form method="post" action="/player/add-question">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="Pergunta" name="pergunta"
+                <c:if test="${not empty pergunta}"> value="${pergunta}"</c:if>>
 
-            <div class="input-group">
-                <div class="input-group-text">
-
-                    <input class="form-check-input mt-0" type="radio" name="selection" checked value=""
-                           aria-label="Radio button for following text input">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=1
+                        <c:if test="${respostaCerta == 1}"> checked </c:if>
+                        <c:if test="${empty respostaCerta}"> checked </c:if>>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Resposta 1" name="resposta1"
+                    <c:if test="${not empty resposta1}"> value="${resposta1}"</c:if>>
                 </div>
-                <input type="text" class="form-control" placeholder="Resposta 1">
 
-            </div>
-            <div class="input-group">
-                <div class="input-group-text">
-
-                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                           aria-label="Radio button for following text input">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=2
+                        <c:if test="${respostaCerta == 2}"> checked </c:if>>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Resposta 2" name="resposta2"
+                    <c:if test="${not empty resposta2}"> value="${resposta2}"</c:if>>
                 </div>
-                <input type="text" class="form-control" placeholder="Resposta 2">
 
-
-            </div>
-            <div class="input-group">
-                <div class="input-group-text">
-
-                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                           aria-label="Radio button for following text input">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=3
+                        <c:if test="${respostaCerta == 3}"> checked </c:if>>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Resposta 3" name="resposta3"
+                    <c:if test="${not empty resposta3}"> value="${resposta3}"</c:if>>
                 </div>
-                <input type="text" class="form-control" placeholder="Resposta 3">
 
-
-            </div>
-            <div class="input-group">
-                <div class="input-group-text">
-
-                    <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                           aria-label="Radio button for following text input">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" name="respostaCerta" value=4
+                        <c:if test="${respostaCerta == 4}"> checked </c:if>>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Resposta 4" name="resposta4"
+                    <c:if test="${not empty resposta4}"> value="${resposta4}"</c:if>>
                 </div>
-                <input type="text" class="form-control" placeholder="Resposta 4">
 
+                <div>
+                    <select class="form-select" name="dificuldadeType" required>
+                        <option selected disabled>Escolha o nível de dificuldade</option>
+                        <c:forEach var="dificuldade" items="${dificuldades}">
+                            <option value=${dificuldade.getType()}
+                                    <c:if test="${dificuldadeType==dificuldade.getType()}"> selected </c:if>>
+                                    ${dificuldade.getButtonText()}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-green">Guardar</button>
+                <div class="error">${msgError}</div>
 
             </div>
-            <div>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Escolha o nível de dificuldade</option>
-                    <option value="1">Fácil</option>
-                    <option value="2">Intermédia</option>
-                    <option value="3">Díficl</option>
-                </select>
-            </div>
-            <button type="button" class="btn btn-green">Guardar</button>
-        </div>
+        </form>
+
     </div>
 </div>
 

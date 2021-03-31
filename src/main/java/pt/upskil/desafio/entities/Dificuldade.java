@@ -26,9 +26,18 @@ public enum Dificuldade {
         this.pontos = pontos;
     }
 
-    public static Dificuldade getDifficuldadeFromApiText(String apiText) {
+    public static Dificuldade getDificuldadeFromApiText(String apiText) {
         for (Dificuldade dificuldade : Dificuldade.values()) {
             if (dificuldade.apiText.equals(apiText)) {
+                return dificuldade;
+            }
+        }
+        return null;
+    }
+
+    public static Dificuldade getDificuldadeFromType(int type) {
+        for (Dificuldade dificuldade : Dificuldade.values()) {
+            if (dificuldade.type == type) {
                 return dificuldade;
             }
         }

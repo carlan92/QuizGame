@@ -7,10 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pt.upskil.desafio.entities.Dificuldade;
+import pt.upskil.desafio.entities.Pergunta;
+import pt.upskil.desafio.entities.Resposta;
 import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
+import pt.upskil.desafio.services.PerguntaServico;
 import pt.upskil.desafio.services.RegistrationService;
 import pt.upskil.desafio.services.UserService;
 import pt.upskil.desafio.services.UserValidationService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -20,6 +29,8 @@ public class UserController {
     RegistrationService registrationService;
     @Autowired
     UserValidationService userValidationService;
+    @Autowired
+    PerguntaServico perguntaServico;
 
 
     @GetMapping(value = "/userToMain")
@@ -106,15 +117,53 @@ public class UserController {
     }
 
     @GetMapping("/player/dashboard")
-    public String goToDashboard(){
+    public String goToDashboard() {
         return "/player/dashboard";
     }
 
     @GetMapping("/player/add-question")
-    public String adicionarPergunta(){
+    public String showPageAdicionarPergunta(ModelMap modelMap) {
+        List<Dificuldade> dificuldades = Arrays.asList(Dificuldade.values());
+        modelMap.put("dificuldades", dificuldades);
         return "/player/add-question";
     }
 
+    @PostMapping("/player/add-question")
+    public String adicionarPergunta(ModelMap modelMap,
+                                    @RequestParam String pergunta,
+                                    @RequestParam String resposta1,
+                                    @RequestParam String resposta2,
+                                    @RequestParam String resposta3,
+                                    @RequestParam String resposta4,
+                                    @RequestParam int respostaCerta,
+                                    @RequestParam int dificuldadeType) {
+
+        Pergunta perguntaObj = Pergunta.criarPergunta(pergunta,
+                resposta1,
+                resposta2,
+                resposta3,
+                resposta4,
+                respostaCerta,
+                dificuldadeType);
+
+        try {
+            perguntaServico.addicionarPergunta(perguntaObj);
+        } catch (AdicionarPerguntaException e) {
+            modelMap.put("pergunta", pergunta);
+            modelMap.put("resposta1", resposta1);
+            modelMap.put("resposta2", resposta2);
+            modelMap.put("resposta3", resposta3);
+            modelMap.put("resposta4", resposta4);
+            modelMap.put("respostaCerta", respostaCerta);
+            modelMap.put("dificuldadeType", dificuldadeType);
+            modelMap.put("msgError", "Não foi possível adicionar a questão.");
+            return "/player/add-question";
+        }
+
+        System.out.println("Pergunta adicionada");
+        // TODO página de confirmação
+        return "/player/dashboard";
+    }
 
 
 }
