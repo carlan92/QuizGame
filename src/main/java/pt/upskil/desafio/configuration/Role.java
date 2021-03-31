@@ -1,7 +1,7 @@
 package pt.upskil.desafio.configuration;
 
 public enum Role {
-    ROLE_USER("/main");
+    ROLE_USER("/player/dashboard");
 
     private String mainPage;
 

@@ -83,15 +83,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getUserMainPage(User user) {
-        if (user == null) {
-            return "public/main";
-        }
-        Role role = getUserRole(user);
-        return role.getMainPage();
-    }
-
-    @Override
     public boolean validateUserMail(String username, String email) {
         User user = userRepository.findByUsername(username);
         if (user != null) {

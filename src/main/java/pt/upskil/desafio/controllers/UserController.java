@@ -32,13 +32,6 @@ public class UserController {
     @Autowired
     PerguntaServico perguntaServico;
 
-
-    @GetMapping(value = "/userToMain")
-    public String showMainPage() {
-        return "redirect:/";
-    }
-
-
     //registration
     @GetMapping(value = "/public/registration")
     public String showRegistrationPage(ModelMap modelMap) {
@@ -78,7 +71,7 @@ public class UserController {
     }
 
     //login
-    @GetMapping(value = {"/public/login", "/"})
+    @GetMapping(value = {"/public/login","/"})
     public String showLoginPage() {
 
         return "public/login";
@@ -116,8 +109,8 @@ public class UserController {
         return "public/recover-password";
     }
 
-    @GetMapping("/player/dashboard")
-    public String goToDashboard() {
+    @GetMapping(value ={"/player/dashboard","/player"})
+    public String goToDashboard(){
         return "/player/dashboard";
     }
 

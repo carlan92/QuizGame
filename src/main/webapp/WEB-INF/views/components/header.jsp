@@ -6,7 +6,7 @@
 <header class="px-3 py-2 bg-dark text-black">
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-            <a href="#" class="text-black-50 text-decoration-none header_logo">
+            <a href="/player/dashboard" class="text-black-50 text-decoration-none header_logo">
                 <img src="/imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
 
             </a>
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="/logout" class="nav-link text-white">
                         <img src="/imagens/icon_logout.svg" alt="logout_logo" class="header_icon" />
                         Terminar Sessão
                     </a>
