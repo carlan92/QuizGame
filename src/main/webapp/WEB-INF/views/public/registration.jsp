@@ -21,7 +21,7 @@
         </div>
 
 
-        <form class="registration-form" action="/register-user" method="post">
+        <form class="registration-form" action="/public/registration" method="post">
 
             <div class="perfil-main-col">
 

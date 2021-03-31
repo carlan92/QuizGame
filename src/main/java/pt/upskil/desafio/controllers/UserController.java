@@ -67,7 +67,7 @@ public class UserController {
     }
 
     //login
-    @GetMapping(value = "/public/login")
+    @GetMapping(value = {"/public/login", "/"})
     public String showLoginPage() {
 
         return "public/login";
@@ -104,4 +104,17 @@ public class UserController {
         modelMap.put("email", email);
         return "public/recover-password";
     }
+
+    @GetMapping("/player/dashboard")
+    public String goToDashboard(){
+        return "/player/dashboard";
+    }
+
+    @GetMapping("/player/add-question")
+    public String adicionarPergunta(){
+        return "/player/add-question";
+    }
+
+
+
 }

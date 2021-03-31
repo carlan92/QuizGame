@@ -13,7 +13,7 @@
     <div class="white_box ">
 
         <div class="perfil-row">
-            <img src="imagens/add-question.svg" alt="add-question" class="add-question-img" />
+            <img src="/imagens/add-question.svg" alt="add-question" class="add-question-img" />
             <h3 class="title_next_appt">Adicionar pergunta</h3>
 
         </div>

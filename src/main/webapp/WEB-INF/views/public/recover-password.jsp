@@ -19,7 +19,7 @@
         </div>
 
         <div class="main-col">
-            <form class="recoverPass-form" action="/recover-password" method="post">
+            <form class="recoverPass-form" action="/public/recover-password" method="post">
                 <div class="input-row">
                     <input class="form-input input1" type="text" name="username" id="user_name_id" required
                            placeholder="*Introduza o seu username" value="${username}">

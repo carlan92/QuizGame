@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="/player/add-question" class="nav-link text-white">
                         <img src="/imagens/patch-question.svg" alt="question_logo" class="header_icon" />
                         Adicionar pergunta
                     </a>
