@@ -29,11 +29,9 @@ public class Ronda {
     public Ronda() {
     }
 
-    public int getScore(Dificuldade difficult,Resposta resposta, int secondsLeft) {
-        if (resposta.isCerta()) {
-            return secondsLeft + difficult.getPontos();
-
-        }
-        return 0;
+    public Ronda(int numero, Pergunta pergunta, Jogo jogo) {
+        this.numero = numero;
+        this.pergunta = pergunta;
+        this.jogo = jogo;
     }
 }
