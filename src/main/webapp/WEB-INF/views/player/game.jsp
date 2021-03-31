@@ -20,19 +20,19 @@
                         <div class="nav">
                             <li>
                                 <a href="#" class="nav-link text-black-50">
-                                    <img src="imagens/public-help.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/public-help.svg" alt="ranking_logo" class="header_icon" />
                                     Ajuda do público
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link text-black-50">
-                                    <img src="imagens/50-help.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/50-help.svg" alt="ranking_logo" class="header_icon" />
                                     Ajuda 50/50
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link text-black-50">
-                                    <img src="imagens/change-help.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/change-help.svg" alt="ranking_logo" class="header_icon" />
                                     Troca pergunta
                                 </a>
                             </li>
@@ -41,19 +41,19 @@
                         <div class="nav nav-right">
                             <li class="nav-link text-black-50 ">
                                 <div>
-                                    <img src="imagens/number-question.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/number-question.svg" alt="ranking_logo" class="header_icon" />
                                     1/15
                                 </div>
                             </li>
                             <li class="nav-link text-black-50">
                                 <div>
-                                    <img src="imagens/points-icon.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/points-icon.svg" alt="ranking_logo" class="header_icon" />
                                     0 xp
                                 </div>
                             </li>
                             <li class="nav-link text-black-50">
                                 <div>
-                                    <img src="imagens/timer-icon.svg" alt="ranking_logo" class="header_icon" />
+                                    <img src="/imagens/timer-icon.svg" alt="ranking_logo" class="header_icon" />
                                     00:10
                                 </div>
                             </li>
