@@ -7,31 +7,31 @@
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
             <a href="#" class="text-black-50 text-decoration-none header_logo">
-                <img src="imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
+                <img src="/imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
 
             </a>
             <ul class="nav text-small header_buttons">
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_play.svg" alt="start_logo" class="header_icon" />
+                        <img src="/imagens/icon_play.svg" alt="start_logo" class="header_icon" />
                         Start
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />
+                        <img src="/imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />
                         Ranking
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <img src="imagens/patch-question.svg" alt="question_logo" class="header_icon" />
+                        <img src="/imagens/patch-question.svg" alt="question_logo" class="header_icon" />
                         Adicionar pergunta
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <img src="imagens/icon_logout.svg" alt="logout_logo" class="header_icon" />
+                        <img src="/imagens/icon_logout.svg" alt="logout_logo" class="header_icon" />
                         Terminar Sessão
                     </a>
                 </li>

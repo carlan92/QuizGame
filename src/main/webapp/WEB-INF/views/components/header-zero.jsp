@@ -7,12 +7,12 @@
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
             <a href="#" class="text-black-50 text-decoration-none header_logo">
-                <img src="imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
+                <img src="/imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
             </a>
             <ul class="nav text-small header_buttons">
                 <li>
                     <a href="/public/login" class="nav-link text-white">
-                        <img src="imagens/..." alt="login_logo" class="header_icon" />
+                        <img src="/imagens/icon-login.svg" alt="login_logo" class="header_icon" />
                         Iniciar Sessão
                     </a>
                 </li>

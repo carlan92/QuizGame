@@ -5,6 +5,8 @@ body {
     background-attachment: fixed;
     background-size: cover;
     opacity: 0.9;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -270,4 +272,3 @@ button:focus {
 select option:disabled {
     color: lightgrey;
 }
-
