@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Lato";
-    src: url("/fonts/Lato-Regular.ttf");
+    src: url("/imagens/fonts/Lato-Regular.ttf");
 }
 
 body {
@@ -53,7 +53,7 @@ body {
 .main .card_box2 {
     width: 400px;
     border-radius: 10px;
-    background: transparent linear-gradient(90deg, #37464dc4 100%, #9490907e 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient( 90deg, #37464dc4 100%, #9490907e 100%) 0% 0% no-repeat padding-box;
     box-shadow: 5px 5px 100px 5px #3287a8
 }
 
@@ -113,7 +113,7 @@ footer {
     padding: 30px 50px;
     box-shadow: 5px 0px 20px #00000029;
     background: transparent linear-gradient(90deg, #ffffffb9 0%, #ffffff7e 100%) 0% 0% no-repeat padding-box;
-    width: 850px;
+    width: 750px;
 }
 
 .logo_small {
@@ -198,7 +198,7 @@ option {
 
 .registry-form .row {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px auto;
 }
 
 /*Perfil*/
@@ -283,7 +283,7 @@ select option:disabled {
     pointer-events: none;
 }
 
-.btn-check:active + .btn-outline-success, .btn-check:checked + .btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active {
+.btn-check:active+.btn-outline-success, .btn-check:checked+.btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active {
     color: #fff;
     background-color: #198754;
     border-color: #198754;
@@ -310,7 +310,7 @@ select option:disabled {
 }
 
 .btn-w100 {
-    min-width: 500px;
+    min-width: 400px;
 }
 
 .text-center {
@@ -334,3 +334,22 @@ select option:disabled {
     margin: auto;
     margin-left: 0;
 }
+
+.percentage {
+    margin-left: 0px;
+    color: rgb(38, 120, 243);
+    text-align: center;
+    font-weight: bold;
+}
+
+.first-col {
+    width: 400px;
+    padding: 0;
+    margin-left: 120px;
+}
+
+.second-col {
+    width: 50px;
+    padding: 0;
+}
+
