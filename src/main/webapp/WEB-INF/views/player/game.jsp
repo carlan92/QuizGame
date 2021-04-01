@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,22 +20,22 @@
 
                         <div class="nav">
                             <li>
-                                <a href="#" class="nav-link text-black-50">
+                                <button type="button" onclick="ajudaPublico()" class="nav-link text-black-50">
                                     <img src="/imagens/public-help.svg" alt="ranking_logo" class="header_icon" />
                                     Ajuda do público
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-black-50">
+                                <button type="button" onclick="ajuda5050()" class="nav-link text-black-50">
                                     <img src="/imagens/50-help.svg" alt="ranking_logo" class="header_icon" />
                                     Ajuda 50/50
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-black-50">
+                                <button type="button" onclick="ajudaTrocaPergunta()" class="nav-link text-black-50">
                                     <img src="/imagens/change-help.svg" alt="ranking_logo" class="header_icon" />
                                     Troca pergunta
-                                </a>
+                                </button>
                             </li>
                         </div>
 
@@ -72,7 +73,7 @@
             <div class="card-body text-center">
 
                 <div class="btn-group-vertical" role="group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" required>
                     <label class="btn btn-outline-success btn-w100" for="btnradio1">${ronda.getPergunta().getRespostas().get(0).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
@@ -87,8 +88,8 @@
 
 
                 <div>
-                    <button type="button" class="btn-green btn-w20">Sair</button>
-                    <button type="button" class="btn-green btn-w20">Próxima </button>
+                    <button type="button" onclick="finishGame()" class="btn-green btn-w20">Sair</button>
+                    <button type="button" onclick="checkAnswer()" class="btn-green btn-w20">Próxima</button>
                 </div>
             </div>
         </div>
@@ -98,5 +99,39 @@
 <%@ include file="../components/footer.jsp" %>
 
 </body>
+<script>
+    function ajudaPublico(){}
+
+    function ajuda5050(){}
+
+    function ajudaTrocaPergunta(){}
+
+    function finishGame(){
+        // send request to end game
+
+        fetch("../player/game/terminar").then(function(response) {
+            console.log(response.json());
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function() {
+            console.log("Booo");
+        });
+
+
+        // go to player main page
+        window.location.replace("/player/dashboard");
+    }
+
+    function checkAnswer(){
+        // send answer
+
+        // get reply
+
+        // game over or new question
+
+            // game over screen
+            // show new question and update page
+    }
+</script>
 
 </html>
