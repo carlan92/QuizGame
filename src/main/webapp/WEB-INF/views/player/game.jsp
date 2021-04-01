@@ -70,7 +70,7 @@
         <div class="white_box ">
 
             <div class="perfil-row text-center">
-                <h3 class="title_next_appt">${ronda.getPergunta().getDescricao()}</h3>
+                <h3 class="title_next_appt" id="idPergunta">${ronda.getPergunta().getDescricao()}</h3>
             </div>
 
             <div class="card-body text-center">
@@ -98,10 +98,10 @@
 
                     <div class="col-1 second-col">
                         <div class="btn-group-vertical">
-                            <span class="btn percentage">80%</span>
-                            <span class="btn percentage">12%</span>
-                            <span class="btn percentage">6%</span>
-                            <span class="btn percentage">2%</span>
+                            <span class="btn percentage" id="percentageSpan1"></span>
+                            <span class="btn percentage" id="percentageSpan2"></span>
+                            <span class="btn percentage" id="percentageSpan3"></span>
+                            <span class="btn percentage" id="percentageSpan4"></span>
                         </div>
                     </div>
                 </div>
@@ -120,11 +120,23 @@
 </body>
 <script>
     function ajudaPublicoRequest() {
-        document.getElementById("id_ajudaPublico").disabled = true
+        document.getElementById("id_ajudaPublico").disabled = true;
+        let oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", ajudaPublico);
+        oReq.open("GET", "/player/game/ajudaPublico");
+        oReq.send();
+    }
+
+    function ajudaPublico() {
+        let percentages = JSON.parse(this.responseText);
+        console.log(percentages);
+        for (let i = 0; i < 4; i++) {
+            document.getElementById("percentageSpan" + (i + 1)).innerHTML = (percentages[i] * 100).toFixed(1) + "%";
+        }
     }
 
     function ajuda5050Request() {
-        document.getElementById("id_ajuda5050").disabled = true
+        document.getElementById("id_ajuda5050").disabled = true;
         let oReq = new XMLHttpRequest();
         oReq.addEventListener("load", ajuda5050);
         oReq.open("GET", "/player/game/ajuda5050");
@@ -132,17 +144,33 @@
     }
 
     function ajuda5050() {
-        let respostasEliminadasNumeros = JSON.parse(this.responseText)
+        let respostasEliminadasNumeros = JSON.parse(this.responseText);
         respostasEliminadasNumeros.forEach(respostaNumero => {
             let buttonId = "btnradio" + respostaNumero;
             let labelId = buttonId + "label";
+            let spanId = "percentageSpan" + respostaNumero;
+            document.getElementById(spanId).style.display = "none";
             document.getElementById(labelId).style.display = "none";
             document.getElementById(buttonId).checked = false;
         });
     }
 
     function ajudaTrocaPerguntaRequest() {
-        document.getElementById("id_ajudaTrocaPergunta").disabled = true
+        document.getElementById("id_ajudaTrocaPergunta").disabled = true;
+        let oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", ajudaTrocaPergunta);
+        oReq.open("GET", "/player/game/ajudaTrocaPergunta");
+        oReq.send();
+    }
+
+    function ajudaTrocaPergunta() {
+        let perguntaParts = JSON.parse(this.responseText);
+        document.getElementById("idPergunta").innerHTML = perguntaParts[0];
+        for (let i = 1; i < perguntaParts.length; i++) {
+            document.getElementById("btnradio" + i + "label").innerHTML = perguntaParts[i];
+            document.getElementById("percentageSpan" + i).style.display = "";
+            document.getElementById("btnradio" + i + "label").style.display = "";
+        }
     }
 
     function finishGame_alternativa() {

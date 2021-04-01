@@ -7,6 +7,7 @@ import pt.upskil.desafio.exceptions.AjudaAlreadyUsedException;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.repositories.JogoRepository;
+import pt.upskil.desafio.repositories.RespostaRepository;
 import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.repositories.UserRepository;
 
@@ -27,6 +28,8 @@ public class JogoServiceImpl implements JogoService {
     PerguntaServico perguntaServico;
     @Autowired
     RondaRepository rondaRepository;
+    @Autowired
+    RespostaRepository respostaRepository;
 
 
     @Override
@@ -120,8 +123,28 @@ public class JogoServiceImpl implements JogoService {
         }
         jogo.setAjudaPublicoUsed(true);
         save(jogo);
-        //TODO
-        return null;
+
+        Pergunta pergunta = jogo.getRondaAtual().getPergunta();
+        List<Resposta> respostas = pergunta.getRespostas();
+        double precision = pergunta.getDificuldade().getPrecisaoAjuda();
+
+        double total = 0;
+        List<Double> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
+            if (!respostas.get(i).isRemovedBy5050()) {
+                double num = Math.random();
+                randomNumbers.add(num);
+                total += num;
+            } else {
+                randomNumbers.add(0.0);
+            }
+        }
+
+        List<Double> result = new ArrayList<>();
+        for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
+            result.add((randomNumbers.get(i)/total) * (1-precision) + (respostas.get(i).isCerta() ? precision : 0));
+        }
+        return result;
     }
 
     /**
@@ -135,13 +158,16 @@ public class JogoServiceImpl implements JogoService {
         }
         jogo.setAjuda5050Used(true);
         save(jogo);
-        List<Resposta> respostas = jogo.getRondaAtual().getPergunta().getRespostas();
+
+        Pergunta pergunta = jogo.getRondaAtual().getPergunta();
+        List<Resposta> respostas = pergunta.getRespostas();
         int respostaCerta = -1;
         for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
             if (respostas.get(i).isCerta()) {
                 respostaCerta = i + 1;
             }
         }
+
         List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             int newRandomNumber = (int) (Math.random() * (Pergunta.NUM_RESPOSTAS - 1 - i)) + 1;
@@ -156,6 +182,7 @@ public class JogoServiceImpl implements JogoService {
             randomNumbers.add(newRandomNumber);
             randomNumbers.sort((o1, o2) -> o1 - o2);
         }
+
         Integer numToMove = -1;
         for (int num : randomNumbers) {
             if (num == respostaCerta) {
@@ -167,19 +194,30 @@ public class JogoServiceImpl implements JogoService {
             randomNumbers.remove(numToMove);
             randomNumbers.add(4);
         }
+
+        for (int num : randomNumbers) {
+            Resposta resposta = pergunta.getRespostas().get(num - 1);
+            resposta.setRemovedBy5050(true);
+            respostaRepository.save(resposta);
+        }
+
         return randomNumbers;
     }
 
     @Override
-    public Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException {
+    public Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException, ObterPerguntasException {
         Jogo jogo = user.getJogoCorrente();
         if (jogo.isAjudaTrocaPerguntaUsed()) {
             throw new AjudaAlreadyUsedException("A ajuda 5050 ja foi usada");
         }
         jogo.setAjudaTrocaPerguntaUsed(true);
         save(jogo);
-        //TODO
-        return null;
+
+        Ronda ronda = jogo.getRondaAtual();
+        Pergunta perguntaNova = perguntaServico.obterPergunta(ronda.getPergunta().getDificuldade());
+        ronda.setPergunta(perguntaNova);
+        rondaRepository.save(ronda);
+        return perguntaNova;
     }
     @Override
     public List<Jogo> findAllByFinished(boolean finished){

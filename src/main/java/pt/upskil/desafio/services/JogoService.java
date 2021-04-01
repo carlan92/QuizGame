@@ -18,6 +18,6 @@ public interface JogoService {
     void save(Jogo jogo);
     List<Double> usarAjudaPublico(User currentUser) throws NoGameActiveException, AjudaAlreadyUsedException;
     List<Integer> usar5050(User user) throws NoGameActiveException, AjudaAlreadyUsedException;
-    Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException;
+    Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException, ObterPerguntasException;
     List<Jogo> findAllByFinished(boolean finished);
 }

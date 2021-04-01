@@ -20,6 +20,7 @@ public class Resposta {
 
     private String texto;
     private boolean certa;
+    private boolean removedBy5050;
 
     public Resposta() {
     }

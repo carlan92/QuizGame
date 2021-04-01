@@ -198,4 +198,10 @@ public class PerguntaServicoImpl implements PerguntaServico {
 
         return perguntas;
     }
+
+    @Override
+    public Pergunta obterPergunta(Dificuldade dificuldade) throws ObterPerguntasException {
+        List<Pergunta> perguntas = obterPerguntas(dificuldade);
+        return perguntas.get((int) (Math.random() * perguntas.size()));
+    }
 }

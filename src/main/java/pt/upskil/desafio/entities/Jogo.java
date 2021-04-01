@@ -36,7 +36,6 @@ public class Jogo implements Comparable<Jogo> {
     private boolean ajudaTrocaPerguntaUsed;
 
 
-
     // Constructors
     public Jogo() {
         this.finished = false;

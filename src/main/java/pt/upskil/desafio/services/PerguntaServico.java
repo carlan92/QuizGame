@@ -21,5 +21,7 @@ public interface PerguntaServico {
 
     List<Pergunta> obter15Perguntas() throws ObterPerguntasException;
 
+    Pergunta obterPergunta(Dificuldade dificuldade) throws ObterPerguntasException;
+
 }
 
