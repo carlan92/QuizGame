@@ -214,8 +214,8 @@
     }
 
     //countdown clock
-    var timeleft = ${tempo};
-    var downloadTimer = setInterval(function () {
+    let timeleft = ${tempo};
+    let downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             clearInterval(downloadTimer);
             document.getElementById("countdown").innerHTML = "Terminou Tempo";
