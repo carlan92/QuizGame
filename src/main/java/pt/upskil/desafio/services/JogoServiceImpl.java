@@ -122,6 +122,7 @@ public class JogoServiceImpl implements JogoService {
         }
         jogo.setAjudaPublicoUsed(true);
         save(jogo);
+        return null;
     }
 }
 
