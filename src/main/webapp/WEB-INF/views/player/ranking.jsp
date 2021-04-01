@@ -12,8 +12,8 @@
     <div class="main">
         <div class="white_box ">
             <div class="perfil-row">
-                <img src="#" alt="#" class="#" />
-                <h3 class="#">Ranking</h3>
+                <img src="/imagens/icon_winners.svg" alt="fill form" class="ranking-img" />
+                <h3 class="title_next_appt">Ranking</h3>
             </div>
 
             <div class="row">
