@@ -9,10 +9,11 @@
 
 <body>
 
+<%@ include file="../components/header.jsp" %>
 
 <div class="main">
     <!--menu da direita-->
-    <div class="white_box3 box-align-left">
+    <div class="white_box">
         <div class="perfil-main-col">
             <div class="perfil-row">
                 <div class="perfil-row">
@@ -36,10 +37,11 @@
                 </div>
             </div>
         </c:if>
-
     </div>
 
 
 </div>
+<%@ include file="../components/footer.jsp" %>
+
 </body>
 </html>

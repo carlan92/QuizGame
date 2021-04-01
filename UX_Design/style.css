@@ -279,11 +279,11 @@ select option:disabled {
 
 .btn-check {
     position: absolute;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     pointer-events: none;
 }
 
-.btn-check:active + .btn-outline-success, .btn-check:checked + .btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active {
+.btn-check:active+.btn-outline-success, .btn-check:checked+.btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active {
     color: #fff;
     background-color: #198754;
     border-color: #198754;
@@ -316,4 +316,21 @@ select option:disabled {
 .text-center {
     display: block;
     margin: auto;
+}
+
+.cell-back, .btn-back {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.img-fill-form {
+    margin: 20px;
+    max-height: 120px;
+}
+
+.title_next_appt {
+    margin: auto;
+    margin-left: 0;
 }
