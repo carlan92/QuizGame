@@ -54,8 +54,8 @@
                             </li>
                             <li class="nav-link text-black-50">
                                 <div>
-                                    <img src="/imagens/timer-icon.svg" alt="ranking_logo" class="header_icon"/>
-                                    00:10
+                                    <img src="/imagens/timer-icon.svg" alt="ranking_logo" class="header_icon" />
+                                    <div id="countdown"></div>
                                 </div>
                             </li>
                         </div>
@@ -155,6 +155,18 @@
         // go to player main page
         window.location.replace("/player/dashboard");
     }
+
+    //countdown clock
+    var timeleft = ${tempo};
+    var downloadTimer = setInterval(function(){
+      if(timeleft <= 0){
+        clearInterval(downloadTimer);
+        document.getElementById("countdown").innerHTML = "Terminou Tempo";
+      } else {
+        document.getElementById("countdown").innerHTML = timeleft + " segundos";
+      }
+      timeleft -= 1;
+    }, 1000);
 </script>
 
 </html>
