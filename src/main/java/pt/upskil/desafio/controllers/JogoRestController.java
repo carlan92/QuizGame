@@ -9,6 +9,8 @@ import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
 
+import java.util.List;
+
 
 @RestController
 public class JogoRestController {
@@ -27,13 +29,16 @@ public class JogoRestController {
     }
 
     @GetMapping("/player/game/ajuda5050")
-    public void ajuda5050() {
-        jogoService.fecharJogos(userService.currentUser());
+    public List<Integer> ajuda5050() {
+        User user = userService.currentUser();
+        return jogoService.usar5050(user);
     }
 
     @GetMapping("/player/game/ajudaTrocaPergunta")
     public void ajudaTrocaPergunta() {
-        jogoService.fecharJogos(userService.currentUser());
+        User user = userService.currentUser();
+        jogoService.usarTrocaPergunta(user);
+
     }
 
 

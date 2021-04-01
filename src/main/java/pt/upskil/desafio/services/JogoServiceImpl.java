@@ -2,10 +2,7 @@ package pt.upskil.desafio.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.upskil.desafio.entities.Jogo;
-import pt.upskil.desafio.entities.Pergunta;
-import pt.upskil.desafio.entities.Ronda;
-import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.entities.*;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.repositories.JogoRepository;
@@ -13,6 +10,8 @@ import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.repositories.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -113,7 +112,7 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public List<Integer> usarAjudaPublico(User user) {
+    public List<Double> usarAjudaPublico(User user) {
         Jogo jogo = null;
         try {
             jogo = user.getJogoCorrente();
@@ -122,6 +121,69 @@ public class JogoServiceImpl implements JogoService {
         }
         jogo.setAjudaPublicoUsed(true);
         save(jogo);
+        //TODO
+        return null;
+    }
+
+    /**
+     * @return Lista de numeros das respostas que foram eliminadas pelo 5050.
+     */
+    @Override
+    public List<Integer> usar5050(User user) {
+        Jogo jogo = null;
+        try {
+            jogo = user.getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            return new ArrayList<>();
+        }
+        jogo.setAjuda5050Used(true);
+        save(jogo);
+        List<Resposta> respostas = jogo.getRondaAtual().getPergunta().getRespostas();
+        int respostaCerta = -1;
+        for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
+            if (respostas.get(i).isCerta()) {
+                respostaCerta = i + 1;
+            }
+        }
+        List<Integer> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            int newRandomNumber = (int) (Math.random() * (Pergunta.NUM_RESPOSTAS - 1 - i)) + 1;
+            for (int existingRandomNumber : randomNumbers) { //check that its not already in the list
+                if (newRandomNumber >= existingRandomNumber) {
+                    newRandomNumber = (newRandomNumber + 1);
+                    if (newRandomNumber == Pergunta.NUM_RESPOSTAS - 1) {
+                        newRandomNumber = 1;
+                    }
+                }
+            }
+            randomNumbers.add(newRandomNumber);
+            randomNumbers.sort((o1, o2) -> o1 - o2);
+        }
+        Integer numToMove = -1;
+        for (int num : randomNumbers) {
+            if (num == respostaCerta) {
+                numToMove = num;
+                break;
+            }
+        }
+        if (numToMove != -1) {
+            randomNumbers.remove(numToMove);
+            randomNumbers.add(4);
+        }
+        return randomNumbers;
+    }
+
+    @Override
+    public Pergunta usarTrocaPergunta(User user) {
+        Jogo jogo = null;
+        try {
+            jogo = user.getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            return null;
+        }
+        jogo.setAjudaTrocaPerguntaUsed(true);
+        save(jogo);
+        //TODO
         return null;
     }
 }

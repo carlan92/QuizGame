@@ -178,7 +178,7 @@ public class UserController {
 
         System.out.println("Pergunta adicionada");
         // TODO página de confirmação
-        return "/player/dashboard";
+        return "redirect:/player/dashboard";
     }
 
     //ranking
