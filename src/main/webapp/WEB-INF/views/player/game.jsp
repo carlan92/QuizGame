@@ -74,19 +74,19 @@
 
                 <div class="btn-group-vertical" role="group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" required>
-                    <label class="btn btn-outline-success btn-w100"
+                    <label class="btn btn-outline-success btn-w100" id ="btnradio1label"
                            for="btnradio1">${ronda.getPergunta().getRespostas().get(0).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100"
+                    <label class="btn btn-outline-success btn-w100" id ="btnradio2label"
                            for="btnradio2">${ronda.getPergunta().getRespostas().get(1).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100"
+                    <label class="btn btn-outline-success btn-w100" id ="btnradio3label"
                            for="btnradio3">${ronda.getPergunta().getRespostas().get(2).getTexto()}</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                    <label class="btn btn-outline-success btn-w100"
+                    <label class="btn btn-outline-success btn-w100" id ="btnradio4label"
                            for="btnradio4">${ronda.getPergunta().getRespostas().get(3).getTexto()}</label>
                 </div>
 
@@ -117,8 +117,13 @@
     }
 
     function ajuda5050() {
-        console.log(this.responseText);
-        console.log(JSON.parse(this.responseText)[0]);
+        let respostasEliminadasNumeros = JSON.parse(this.responseText)
+        respostasEliminadasNumeros.forEach(respostaNumero => {
+            let buttonId = "btnradio" + respostaNumero;
+            let labelId = buttonId + "label";
+            document.getElementById(labelId).style.display = "none";
+            document.getElementById(buttonId).checked = false;
+        });
     }
 
     function ajudaTrocaPerguntaRequest() {

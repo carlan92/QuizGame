@@ -3,6 +3,7 @@ package pt.upskil.desafio.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.upskil.desafio.entities.*;
+import pt.upskil.desafio.exceptions.AjudaAlreadyUsedException;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.repositories.JogoRepository;
@@ -112,12 +113,10 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public List<Double> usarAjudaPublico(User user) {
-        Jogo jogo = null;
-        try {
-            jogo = user.getJogoCorrente();
-        } catch (NoGameActiveException e) {
-            return new ArrayList<>();
+    public List<Double> usarAjudaPublico(User user) throws NoGameActiveException, AjudaAlreadyUsedException {
+        Jogo jogo = user.getJogoCorrente();
+        if (jogo.isAjudaPublicoUsed()) {
+            throw new AjudaAlreadyUsedException("A ajuda publico ja foi usada");
         }
         jogo.setAjudaPublicoUsed(true);
         save(jogo);
@@ -129,12 +128,10 @@ public class JogoServiceImpl implements JogoService {
      * @return Lista de numeros das respostas que foram eliminadas pelo 5050.
      */
     @Override
-    public List<Integer> usar5050(User user) {
-        Jogo jogo = null;
-        try {
-            jogo = user.getJogoCorrente();
-        } catch (NoGameActiveException e) {
-            return new ArrayList<>();
+    public List<Integer> usar5050(User user) throws NoGameActiveException, AjudaAlreadyUsedException {
+        Jogo jogo = user.getJogoCorrente();
+        if (jogo.isAjuda5050Used()) {
+            throw new AjudaAlreadyUsedException("A ajuda 5050 ja foi usada");
         }
         jogo.setAjuda5050Used(true);
         save(jogo);
@@ -151,7 +148,7 @@ public class JogoServiceImpl implements JogoService {
             for (int existingRandomNumber : randomNumbers) { //check that its not already in the list
                 if (newRandomNumber >= existingRandomNumber) {
                     newRandomNumber = (newRandomNumber + 1);
-                    if (newRandomNumber == Pergunta.NUM_RESPOSTAS - 1) {
+                    if (newRandomNumber == Pergunta.NUM_RESPOSTAS) {
                         newRandomNumber = 1;
                     }
                 }
@@ -174,12 +171,10 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public Pergunta usarTrocaPergunta(User user) {
-        Jogo jogo = null;
-        try {
-            jogo = user.getJogoCorrente();
-        } catch (NoGameActiveException e) {
-            return null;
+    public Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException {
+        Jogo jogo = user.getJogoCorrente();
+        if (jogo.isAjudaTrocaPerguntaUsed()) {
+            throw new AjudaAlreadyUsedException("A ajuda 5050 ja foi usada");
         }
         jogo.setAjudaTrocaPerguntaUsed(true);
         save(jogo);
