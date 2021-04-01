@@ -3,26 +3,52 @@ package pt.upskil.desafio.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.exceptions.NoGameActiveException;
+import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
 
-import java.util.HashMap;
 
 @RestController
 public class JogoRestController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    JogoService jogoService;
+
+    @GetMapping("/player/game/ajudaPublico")
+    public void ajudaPublico() {
+        User user = userService.currentUser();
+        Jogo jogo = null;
+        try {
+            jogo = user.getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            e.printStackTrace();//TODO
+        }
+        jogo.setAjudaPublicoUsed(true);
+        jogoService.save(jogo);
+
+
+    }
+
+    @GetMapping("/player/game/ajuda5050")
+    public void ajuda5050() {
+        jogoService.fecharJogos(userService.currentUser());
+    }
+
+    @GetMapping("/player/game/ajudaTrocaPergunta")
+    public void ajudaTrocaPergunta() {
+        jogoService.fecharJogos(userService.currentUser());
+    }
+
+
+
 
     @GetMapping("/player/game/terminar")
     public void terminarJogo() {
-
-        // TODO user.setJogoCorrente(null);
-
-
-        /*System.out.println("coisas");
-        HashMap<String,String> map = new HashMap<>();
-        map.put("response","aqui vai resposta");*/
+        jogoService.fecharJogos(userService.currentUser());
     }
 
 

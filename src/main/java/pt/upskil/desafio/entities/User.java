@@ -67,12 +67,6 @@ public class User {
                 '}';
     }
 
-    public void fecharJogos() {
-        for (Jogo jogo : jogos) {
-            jogo.setFinished(true);
-        }
-    }
-
     public Jogo getJogoCorrente() throws NoGameActiveException {
         for (Jogo jogo : jogos) {
             if(!jogo.isFinished()){

@@ -11,5 +11,6 @@ public interface JogoService {
     int highScorePosition(User user);
     List<Jogo> findAll();
     void iniciarJogo(User user) throws ObterPerguntasException;
-
+    void fecharJogos(User user);
+    void save(Jogo jogo);
 }

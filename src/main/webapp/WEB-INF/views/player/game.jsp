@@ -20,19 +20,19 @@
 
                         <div class="nav">
                             <li>
-                                <button type="button" onclick="ajudaPublico()" class="nav-link text-black-50">
+                                <button type="button" onclick="ajudaPublico()" id="id_ajudaPublico" class="nav-link text-black-50">
                                     <img src="/imagens/public-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda do público
                                 </button>
                             </li>
                             <li>
-                                <button type="button" onclick="ajuda5050()" class="nav-link text-black-50">
+                                <button type="button" onclick="ajuda5050()" id="id_ajuda5050" class="nav-link text-black-50">
                                     <img src="/imagens/50-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda 50/50
                                 </button>
                             </li>
                             <li>
-                                <button type="button" onclick="ajudaTrocaPergunta()" class="nav-link text-black-50">
+                                <button type="button" onclick="ajudaTrocaPergunta()" id="id_ajudaTrocaPergunta" class="nav-link text-black-50">
                                     <img src="/imagens/change-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Troca pergunta
                                 </button>
@@ -105,12 +105,15 @@
 </body>
 <script>
     function ajudaPublico() {
+        document.getElementById("id_ajudaPublico").disabled = true
     }
 
     function ajuda5050() {
+        document.getElementById("id_ajuda5050").disabled = true
     }
 
     function ajudaTrocaPergunta() {
+        document.getElementById("id_ajudaTrocaPergunta").disabled = true
     }
 
     function finishGame_alternativa() {

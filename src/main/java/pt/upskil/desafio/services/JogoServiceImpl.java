@@ -58,7 +58,7 @@ public class JogoServiceImpl implements JogoService {
     @Override
     public void iniciarJogo(User user) throws ObterPerguntasException {
         // fechar jogos anteriores
-        user.fecharJogos();
+        fecharJogos(user);
 
         // iniciar jogo
         Jogo jogo = new Jogo();
@@ -93,4 +93,21 @@ public class JogoServiceImpl implements JogoService {
         userRepository.save(user);
 
     }
+
+    @Override
+    public void fecharJogos(User user) {
+        List<Jogo> jogos = user.getJogos();
+        for (Jogo jogo : jogos) {
+            if (!jogo.isFinished()) {
+                jogo.setFinished(true);
+                jogoRepository.save(jogo);
+            }
+        }
+    }
+
+    @Override
+    public void save(Jogo jogo) {
+        jogoRepository.save(jogo);
+    }
 }
+

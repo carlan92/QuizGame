@@ -28,8 +28,9 @@ public class JogoController {
         try {
             jogoService.iniciarJogo(user);
         } catch (ObterPerguntasException e) {
-            e.printStackTrace();
-            // TODO return e map para página de erro
+            modelMap.put("message", "Não iniciar o jogo.");
+            modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            return "component/alert-message";
         }
 
 
