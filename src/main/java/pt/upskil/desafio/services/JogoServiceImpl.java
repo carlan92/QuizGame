@@ -181,5 +181,9 @@ public class JogoServiceImpl implements JogoService {
         //TODO
         return null;
     }
+    @Override
+    public List<Jogo> findAllByFinished(boolean finished){
+        return jogoRepository.findAllByFinished(finished);
+    }
 }
 

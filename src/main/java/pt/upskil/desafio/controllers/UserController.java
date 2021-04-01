@@ -185,10 +185,19 @@ public class UserController {
     @GetMapping(value = "/player/ranking")
     public String goToRankingTable(ModelMap modelMap) {
         List<Jogo> jogos = new ArrayList<>();
-        jogos.addAll(jogoService.findAll());
+        jogos.addAll(jogoService.findAllByFinished(true));
         jogos.sort(Collections.reverseOrder());
+        List<Jogo> rankingTOP10 = new ArrayList<>();
+        if (jogos.size() <= 10) {
+            rankingTOP10.addAll(jogoService.findAllByFinished(true));
+            rankingTOP10.sort(Collections.reverseOrder());
+        } else {
+            for (int i = 0; i < 10; i++) {
+                rankingTOP10.add(jogos.get(i));
+            }
+        }
 
-        modelMap.put("jogos", jogos);
+        modelMap.put("jogos", rankingTOP10);
 
         return "player/ranking";
     }

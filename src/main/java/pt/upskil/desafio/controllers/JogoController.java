@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import pt.upskil.desafio.entities.Dificuldade;
 import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
