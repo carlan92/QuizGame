@@ -7,9 +7,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
+import pt.upskil.desafio.utils.AlertMessageImage;
 
 
 @Controller
@@ -31,8 +33,14 @@ public class JogoController {
         }
 
 
-        Ronda ronda = user.getJogoCorrente().getRondaAtual();
-        System.out.println(ronda.getPergunta().getRespostas());
+        Ronda ronda = null;
+        try {
+            ronda = user.getJogoCorrente().getRondaAtual();
+        } catch (NoGameActiveException e) {
+            modelMap.put("message", "Não iniciar o jogo.");
+            modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            return "component/alert-message";
+        }
 
         modelMap.put("ronda", ronda);
         return "player/game";

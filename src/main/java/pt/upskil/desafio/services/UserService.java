@@ -23,4 +23,6 @@ public interface UserService {
     boolean validateUserMail(String username, String email);
 
     long countAllUsers();
+
+    void save(User user);
 }

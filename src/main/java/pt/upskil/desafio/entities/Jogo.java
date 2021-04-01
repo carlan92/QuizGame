@@ -27,6 +27,8 @@ public class Jogo implements Comparable<Jogo> {
 
     private int gameScore;
 
+    private boolean finished;
+
     // Constructors
     public Jogo() {
     }
@@ -36,6 +38,7 @@ public class Jogo implements Comparable<Jogo> {
         this.user = user;
         this.rondaAtual = rondaAtual;
         this.gameScore = gameScore;
+        this.finished = false;
     }
 
     public void addScore(int score){

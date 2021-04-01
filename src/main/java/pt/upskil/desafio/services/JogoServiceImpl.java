@@ -57,6 +57,8 @@ public class JogoServiceImpl implements JogoService {
 
     @Override
     public void iniciarJogo(User user) throws ObterPerguntasException {
+        // fechar jogos anteriores
+        user.fecharJogos();
 
         // iniciar jogo
         Jogo jogo = new Jogo();
@@ -83,8 +85,6 @@ public class JogoServiceImpl implements JogoService {
 
         jogo.setRondas(rondas);
         jogo.setRondaAtual(rondas.get(0));
-
-        user.setJogoCorrente(jogo);
 
         // save Game
         jogoRepository.save(jogo);

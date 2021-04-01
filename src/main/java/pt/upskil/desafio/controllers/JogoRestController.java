@@ -15,16 +15,14 @@ public class JogoRestController {
 
 
     @GetMapping("/player/game/terminar")
-    public HashMap<String,String> terminarJogo() {
-        User user = userService.currentUser();
-        user.setJogoCorrente(null);
+    public void terminarJogo() {
+
+        // TODO user.setJogoCorrente(null);
 
 
-
-        System.out.println("coisas");
+        /*System.out.println("coisas");
         HashMap<String,String> map = new HashMap<>();
-        map.put("response","aqui vai resposta");
-        return map;
+        map.put("response","aqui vai resposta");*/
     }
 
 

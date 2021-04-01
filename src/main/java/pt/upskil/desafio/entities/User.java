@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pt.upskil.desafio.configuration.Role;
+import pt.upskil.desafio.exceptions.NoGameActiveException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,9 +33,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Jogo> jogos;
 
-    @OneToOne
-    private Jogo jogoCorrente;
-
     //Constructors
     public User() {
     }
@@ -50,8 +48,8 @@ public class User {
     }
 
     //Methods
-    public List<GrantedAuthority> getAuthorities(){
-        List<GrantedAuthority> roles=new ArrayList<>();
+    public List<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
         return roles;
     }
@@ -67,5 +65,20 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void fecharJogos() {
+        for (Jogo jogo : jogos) {
+            jogo.setFinished(true);
+        }
+    }
+
+    public Jogo getJogoCorrente() throws NoGameActiveException {
+        for (Jogo jogo : jogos) {
+            if(!jogo.isFinished()){
+                return jogo;
+            }
+        }
+        throw new NoGameActiveException();
     }
 }
