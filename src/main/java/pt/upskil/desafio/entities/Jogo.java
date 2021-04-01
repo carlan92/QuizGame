@@ -39,6 +39,10 @@ public class Jogo implements Comparable<Jogo> {
 
     // Constructors
     public Jogo() {
+        this.finished = false;
+        this.ajudaPublicoUsed = false;
+        this.ajuda5050Used = false;
+        this.ajudaTrocaPerguntaUsed = false;
     }
 
     public Jogo(long id, User user, Ronda rondaAtual, int gameScore) {

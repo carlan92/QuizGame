@@ -6,6 +6,7 @@ import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Pergunta;
 import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
+import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.repositories.JogoRepository;
 import pt.upskil.desafio.repositories.RondaRepository;
@@ -63,6 +64,7 @@ public class JogoServiceImpl implements JogoService {
         // iniciar jogo
         Jogo jogo = new Jogo();
         jogo.setUser(userService.currentUser());
+        user.getJogos().add(jogo);
         jogoRepository.save(jogo);
 
         // criar obter perguntas
@@ -108,6 +110,18 @@ public class JogoServiceImpl implements JogoService {
     @Override
     public void save(Jogo jogo) {
         jogoRepository.save(jogo);
+    }
+
+    @Override
+    public List<Integer> usarAjudaPublico(User user) {
+        Jogo jogo = null;
+        try {
+            jogo = user.getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            return new ArrayList<>();
+        }
+        jogo.setAjudaPublicoUsed(true);
+        save(jogo);
     }
 }
 

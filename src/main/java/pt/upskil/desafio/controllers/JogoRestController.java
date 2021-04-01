@@ -21,14 +21,7 @@ public class JogoRestController {
     @GetMapping("/player/game/ajudaPublico")
     public void ajudaPublico() {
         User user = userService.currentUser();
-        Jogo jogo = null;
-        try {
-            jogo = user.getJogoCorrente();
-        } catch (NoGameActiveException e) {
-            e.printStackTrace();//TODO
-        }
-        jogo.setAjudaPublicoUsed(true);
-        jogoService.save(jogo);
+        jogoService.usarAjudaPublico(user);
 
 
     }

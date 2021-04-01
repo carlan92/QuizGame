@@ -31,9 +31,9 @@ public class JogoController {
         try {
             jogoService.iniciarJogo(user);
         } catch (ObterPerguntasException e) {
-            modelMap.put("message", "Não iniciar o jogo.");
+            modelMap.put("message", "Não foi possivel buscar as perguntas para o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
-            return "component/alert-message";
+            return "components/alert-message";
         }
 
 
@@ -41,9 +41,9 @@ public class JogoController {
         try {
             ronda = user.getJogoCorrente().getRondaAtual();
         } catch (NoGameActiveException e) {
-            modelMap.put("message", "Não iniciar o jogo.");
+            modelMap.put("message", "Não foi possivel encontrar o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
-            return "component/alert-message";
+            return "components/alert-message";
         }
 
         //obter duração do tempo de pergunta
