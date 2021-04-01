@@ -310,7 +310,7 @@ select option:disabled {
 }
 
 .btn-w100 {
-    min-width: 500px;
+    min-width: 400px;
 }
 
 .text-center {
@@ -333,4 +333,28 @@ select option:disabled {
 .title_next_appt {
     margin: auto;
     margin-left: 0;
+}
+
+.percentage {
+    margin-left: 0px;
+    color: rgb(38, 120, 243);
+    text-align: center;
+    font-weight: bold;
+}
+
+.percentage:hover {
+    color: rgb(38, 120, 243);
+    cursor:default;
+    background-color: transparent;
+}
+
+.first-col {
+    width: 400px;
+    padding: 0;
+    margin-left: 120px;
+}
+
+.second-col {
+    width: 50px;
+    padding-left: 5px;
 }
