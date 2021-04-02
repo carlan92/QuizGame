@@ -122,6 +122,24 @@
 
 </body>
 <script>
+    //countdown clock
+    let timeleft = ${tempo};
+    countDownClock()
+    function countDownClock() {
+        let downloadTimer = setInterval(function () {
+            if (timeleft <= 0) {
+                clearInterval(downloadTimer);
+                document.getElementById("countdown").innerHTML = "Terminou<br>Tempo";
+                finishGame()
+            } else {
+                document.getElementById("countdown").innerHTML = timeleft + "<br>segundos";
+            }
+            timeleft -= 1;
+        }, 1000);
+    }
+
+
+
     function ajudaPublicoRequest() {
         document.getElementById("id_ajudaPublico").disabled = true;
         let oReq = new XMLHttpRequest();
@@ -175,6 +193,7 @@
         for (let i = 1; i < perguntaParts.length; i++) {
             document.getElementById("btnradio" + i + "label").innerHTML = perguntaParts[i];
             document.getElementById("btnradio" + i + "label").style.display = "";
+            document.getElementById("btnradio" + i).checked = false;
 
             document.getElementById("percentageSpan" + i).innerHTML = "";
             document.getElementById("percentageSpan" + i).style.display = "";
@@ -187,7 +206,7 @@
             let perguntaEscolhida = Array.from(document.getElementsByName("btnradio")).find(r => r.checked).value;
             let oReq = new XMLHttpRequest();
             oReq.addEventListener("load", checkAnswer);
-            oReq.open("GET", "/player/game/verificar-resposta/" + perguntaEscolhida);
+            oReq.open("GET", "/player/game/verificar-resposta/" + perguntaEscolhida + "/" + timeleft);
             oReq.send();
         } catch (e) {
             return;
@@ -202,28 +221,32 @@
         console.log(reply.respostaCorrecta)
 
         // game over or new question
-        if(reply.respostaCorrecta.toLowerCase() === "false"){
+        if (reply.respostaCorrecta.toLowerCase() === "false") {
             // game over screen // TODO
             finishGameRequest()
+        } else if (reply.terminou.toLowerCase() === "true") {
+            // o jogo terminou com a última pergunta com resposta certa
+            // página de vitória // TODO
+            finishGameRequest()
+        } else {
+            // show new question and update page
+            for (let i = 1; i < 5; i++) {
+                document.getElementById("btnradio" + i + "label").style.display = "";
+                document.getElementById("btnradio" + i).checked = false;
+
+                document.getElementById("percentageSpan" + i).innerHTML = "";
+                document.getElementById("percentageSpan" + i).style.display = "";
+            }
+
+            document.getElementById("idPergunta").innerHTML = reply.pergunta;
+            document.getElementById("btnradio1label").innerHTML = reply.resposta1;
+            document.getElementById("btnradio2label").innerHTML = reply.resposta2;
+            document.getElementById("btnradio3label").innerHTML = reply.resposta3;
+            document.getElementById("btnradio4label").innerHTML = reply.resposta4;
+            document.getElementById("id_ronda").innerHTML = reply.rondaNr;
+            document.getElementById("id_xp").innerHTML = reply.pontos;
+            timeleft = parseInt(reply.rondaTempo); //TODO
         }
-
-
-        // show new question and update page
-        for (let i = 1; i < 5; i++) {
-            document.getElementById("btnradio" + i + "label").style.display = "";
-
-            document.getElementById("percentageSpan" + i).innerHTML = "";
-            document.getElementById("percentageSpan" + i).style.display = "";
-        }
-
-        document.getElementById("idPergunta").innerHTML = reply.pergunta;
-        document.getElementById("btnradio1label").innerHTML = reply.resposta1;
-        document.getElementById("btnradio2label").innerHTML = reply.resposta2;
-        document.getElementById("btnradio3label").innerHTML = reply.resposta3;
-        document.getElementById("btnradio4label").innerHTML = reply.resposta4;
-        document.getElementById("id_ronda").innerHTML = reply.rondaNr;
-        document.getElementById("id_xp").innerHTML = reply.pontos;
-        document.getElementById("countdown").innerHTML = reply.rondaTempo; //TODO
     }
 
     function finishGameRequest() {
@@ -238,17 +261,6 @@
         window.location.replace("/player/dashboard");
     }
 
-    //countdown clock
-    let timeleft = ${tempo};
-    let downloadTimer = setInterval(function () {
-        if (timeleft <= 0) {
-            clearInterval(downloadTimer);
-            document.getElementById("countdown").innerHTML = "Terminou Tempo";
-        } else {
-            document.getElementById("countdown").innerHTML = timeleft + " segundos";
-        }
-        timeleft -= 1;
-    }, 1000);
 </script>
 
 </html>

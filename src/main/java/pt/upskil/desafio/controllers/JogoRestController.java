@@ -12,10 +12,13 @@ import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
 
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 
 @RestController
@@ -87,8 +90,9 @@ public class JogoRestController {
         jogoService.fecharJogos(userService.currentUser());
     }
 
-    @GetMapping("/player/game/verificar-resposta/{nrResposta}")
-    public Map<String, String> verificarResposta(@PathVariable int nrResposta) throws NoGameActiveException {
+    @GetMapping("/player/game/verificar-resposta/{nrResposta}/{tempoRestante}")
+    public Map<String, String> verificarResposta(@PathVariable int nrResposta,
+                                                 @PathVariable int tempoRestante) throws NoGameActiveException {
         Map<String, String> resultado = new HashMap<>();
 
         Jogo jogo = userService.currentUser().getJogoCorrente();
@@ -105,19 +109,27 @@ public class JogoRestController {
 
             Ronda novaRonda = jogo.proximaRonda();
             Pergunta novaPergunta = novaRonda.getPergunta();
-            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos()); //TODO adicionar pontos pelo tempo restante
+            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos() + tempoRestante); //TODO adicionar pontos pelo tempo restante
             jogo.setRondaAtual(novaRonda);
-            jogoService.save(jogo);
 
-            // Se resposta correcta enviar dados da nova pergunta
-            resultado.put("pergunta", novaPergunta.getDescricao());
-            resultado.put("resposta1", novaPergunta.getRespostas().get(0).getTexto());
-            resultado.put("resposta2", novaPergunta.getRespostas().get(1).getTexto());
-            resultado.put("resposta3", novaPergunta.getRespostas().get(2).getTexto());
-            resultado.put("resposta4", novaPergunta.getRespostas().get(3).getTexto());
-            resultado.put("rondaNr", Integer.toString(novaRonda.getNumero()));
-            resultado.put("pontos", Integer.toString(jogo.getGameScore()));
-            resultado.put("rondaTempo", novaPergunta.getDificuldade().getDuration().toString());
+            if (nrResposta == jogo.getRondas().size()) {
+                // Se for a última pergunta termina o jogo
+                jogo.setFinished(true);
+                resultado.put("terminou", "true");
+            } else {
+                // Se resposta correcta enviar dados da nova pergunta
+                resultado.put("pergunta", novaPergunta.getDescricao());
+                resultado.put("resposta1", novaPergunta.getRespostas().get(0).getTexto());
+                resultado.put("resposta2", novaPergunta.getRespostas().get(1).getTexto());
+                resultado.put("resposta3", novaPergunta.getRespostas().get(2).getTexto());
+                resultado.put("resposta4", novaPergunta.getRespostas().get(3).getTexto());
+                resultado.put("rondaNr", Integer.toString(novaRonda.getNumero()));
+                resultado.put("pontos", Integer.toString(jogo.getGameScore()));
+                resultado.put("rondaTempo", Long.toString(novaPergunta.getDificuldade().getDuration().get(SECONDS)));
+                resultado.put("terminou", "false");
+            }
+
+            jogoService.save(jogo);
 
         } else {
             resultado.put("respostaCorrecta", "false");
