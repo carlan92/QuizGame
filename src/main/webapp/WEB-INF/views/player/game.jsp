@@ -206,7 +206,7 @@
             let perguntaEscolhida = Array.from(document.getElementsByName("btnradio")).find(r => r.checked).value;
             let oReq = new XMLHttpRequest();
             oReq.addEventListener("load", checkAnswer);
-            oReq.open("GET", "/player/game/verificar-resposta/" + perguntaEscolhida + "/" + timeleft);
+            oReq.open("GET", "/player/game/verificar-resposta/" + perguntaEscolhida);
             oReq.send();
         } catch (e) {
             return;

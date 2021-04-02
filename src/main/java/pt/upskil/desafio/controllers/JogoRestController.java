@@ -8,17 +8,17 @@ import pt.upskil.desafio.entities.*;
 import pt.upskil.desafio.exceptions.AjudaAlreadyUsedException;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
-import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.services.JogoService;
+import pt.upskil.desafio.services.RondaService;
 import pt.upskil.desafio.services.UserService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
-
 
 @RestController
 public class JogoRestController {
@@ -27,7 +27,7 @@ public class JogoRestController {
     @Autowired
     JogoService jogoService;
     @Autowired
-    RondaRepository rondaRepository;
+    RondaService rondaService;
 
 
     @GetMapping("/player/game/ajudaPublico")
@@ -87,25 +87,16 @@ public class JogoRestController {
         jogoService.fecharJogos(userService.currentUser());
     }
 
-    @GetMapping("/player/game/verificar-resposta/{nrResposta}/{tempoRestante}")
-    public Map<String, String> verificarResposta(@PathVariable int nrResposta,
-                                                 @PathVariable int tempoRestante) throws NoGameActiveException  {//TODO
+    @GetMapping("/player/game/verificar-resposta/{nrResposta}")
+    public Map<String, String> verificarResposta(@PathVariable int nrResposta) throws NoGameActiveException  {//TODO
+        LocalDateTime horaResposta = LocalDateTime.now();
         Map<String, String> resultado = new HashMap<>();
 
         Jogo jogo = userService.currentUser().getJogoCorrente();
-        Ronda ronda = jogo.getRondaAtual();
-        Pergunta pergunta = ronda.getPergunta();
-        List<Resposta> respostas = pergunta.getRespostas();
-
-        ronda.setRespostaEscolhida(respostas.get(nrResposta - 1));
-        rondaRepository.save(ronda);
 
         // Verificar se resposta é correcta
-        if (respostas.get(nrResposta - 1).isCerta()) {
+        if (jogoService.responderPergunta(userService.currentUser(), nrResposta, horaResposta)) {
             resultado.put("respostaCorrecta", "true");
-
-            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos());
-            jogo.addScore(tempoRestante);
 
             if (nrResposta == jogo.getRondas().size()) {
                 // Se for a última pergunta termina o jogo
@@ -116,6 +107,9 @@ public class JogoRestController {
                 Ronda novaRonda = jogo.proximaRonda();
                 Pergunta novaPergunta = novaRonda.getPergunta();
                 jogo.setRondaAtual(novaRonda);
+
+                novaRonda.setStartTime(LocalDateTime.now());
+                rondaService.save(novaRonda);
 
                 resultado.put("pergunta", novaPergunta.getDescricao());
                 resultado.put("resposta1", novaPergunta.getRespostas().get(0).getTexto());

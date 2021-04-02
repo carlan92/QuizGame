@@ -11,9 +11,9 @@ import pt.upskil.desafio.repositories.RespostaRepository;
 import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.repositories.UserRepository;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -88,8 +88,12 @@ public class JogoServiceImpl implements JogoService {
             rondaRepository.save(ronda);
         }
 
+        Ronda rondaActual = rondas.get(0);
+        rondaActual.setStartTime(LocalDateTime.now());
+        rondaRepository.save(rondaActual);
+
         jogo.setRondas(rondas);
-        jogo.setRondaAtual(rondas.get(0));
+        jogo.setRondaAtual(rondaActual);
 
         // save Game
         jogoRepository.save(jogo);
@@ -219,9 +223,49 @@ public class JogoServiceImpl implements JogoService {
         rondaRepository.save(ronda);
         return perguntaNova;
     }
+
     @Override
     public List<Jogo> findAllByFinished(boolean finished){
         return jogoRepository.findAllByFinished(finished);
+    }
+
+    @Override
+    public boolean responderPergunta(User user, int nrResposta, LocalDateTime horaResposta) throws NoGameActiveException {
+        Jogo jogo = user.getJogoCorrente();
+        Ronda ronda = jogo.getRondaAtual();
+
+        if (!respostaAtempada(ronda, horaResposta)){
+            return false;
+        }
+
+        Pergunta pergunta = ronda.getPergunta();
+        List<Resposta> respostas = pergunta.getRespostas();
+        ronda.setRespostaEscolhida(respostas.get(nrResposta - 1));
+        rondaRepository.save(ronda);
+
+        if(respostaCorrecta(ronda, nrResposta)) {
+            long questionTime = ronda.getPergunta().getDificuldade().getDuration().getSeconds(); // segundos disponíveis para responder à questão
+            long tempoRestante = questionTime - ChronoUnit.SECONDS.between(horaResposta, ronda.getStartTime()); // tempo que sobrou, caso resposta atempada
+
+            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos());
+            jogo.addScore((int) tempoRestante);
+
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    private boolean respostaCorrecta(Ronda ronda, int nrResposta) {
+        List<Resposta> respostas = ronda.getPergunta().getRespostas();
+        return respostas.get(nrResposta - 1).isCerta();
+    }
+
+    private boolean respostaAtempada(Ronda ronda, LocalDateTime horaResposta) {
+        long questionTime = ronda.getPergunta().getDificuldade().getDuration().getSeconds(); // segundos disponíveis para responder à questão
+        LocalDateTime timeLimit = ronda.getStartTime().plusSeconds(questionTime); // tempo limite para responder
+        return horaResposta.isBefore(timeLimit);
     }
 }
 

@@ -2,11 +2,13 @@ package pt.upskil.desafio.services;
 
 import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Pergunta;
+import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.AjudaAlreadyUsedException;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface JogoService {
@@ -20,4 +22,5 @@ public interface JogoService {
     List<Integer> usar5050(User user) throws NoGameActiveException, AjudaAlreadyUsedException;
     Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException, ObterPerguntasException;
     List<Jogo> findAllByFinished(boolean finished);
+    boolean responderPergunta(User user, int nrResposta, LocalDateTime horaResposta) throws NoGameActiveException;
 }
