@@ -30,7 +30,7 @@ public class JogoController {
         try {
             jogoService.iniciarJogo(user);
         } catch (ObterPerguntasException e) {
-            modelMap.put("message", "Não foi possivel buscar as perguntas para o jogo.");
+            modelMap.put("message", "Não foi possível buscar as perguntas para o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
             return "components/alert-message";
         }
@@ -40,7 +40,7 @@ public class JogoController {
         try {
             ronda = user.getJogoCorrente().getRondaAtual();
         } catch (NoGameActiveException e) {
-            modelMap.put("message", "Não foi possivel encontrar o jogo.");
+            modelMap.put("message", "Não foi possível encontrar o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
             return "components/alert-message";
         }
