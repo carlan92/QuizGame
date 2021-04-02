@@ -38,7 +38,14 @@ public class JogoServiceImpl implements JogoService {
         if (jogos == null || jogos.isEmpty()) {
             return 0;
         }
-        return jogos.get(0).getGameScore();
+
+        for (Jogo jogo : jogos) {
+            if (jogo.getUser().equals(user) && jogo.isFinished()) {
+                return jogo.getGameScore();
+            }
+        }
+
+        return 0;
     }
 
     @Override
@@ -46,7 +53,7 @@ public class JogoServiceImpl implements JogoService {
         List<Jogo> jogos = jogoRepository.findAllByOrderByGameScoreDesc();
 
         for (int i = 0; i < jogos.size(); i++) {
-            if (jogos.get(i).getUser().equals(user)) {
+            if (jogos.get(i).getUser().equals(user) && jogos.get(i).isFinished()) {
                 return i + 1;
             }
         }
@@ -146,7 +153,7 @@ public class JogoServiceImpl implements JogoService {
 
         List<Double> result = new ArrayList<>();
         for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
-            result.add((randomNumbers.get(i)/total) * (1-precision) + (respostas.get(i).isCerta() ? precision : 0));
+            result.add((randomNumbers.get(i) / total) * (1 - precision) + (respostas.get(i).isCerta() ? precision : 0));
         }
         return result;
     }
@@ -225,7 +232,7 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public List<Jogo> findAllByFinished(boolean finished){
+    public List<Jogo> findAllByFinished(boolean finished) {
         return jogoRepository.findAllByFinished(finished);
     }
 
@@ -234,7 +241,7 @@ public class JogoServiceImpl implements JogoService {
         Jogo jogo = user.getJogoCorrente();
         Ronda ronda = jogo.getRondaAtual();
 
-        if (!respostaAtempada(ronda, horaResposta)){
+        if (!respostaAtempada(ronda, horaResposta)) {
             return false;
         }
 
@@ -243,7 +250,7 @@ public class JogoServiceImpl implements JogoService {
         ronda.setRespostaEscolhida(respostas.get(nrResposta - 1));
         rondaRepository.save(ronda);
 
-        if(respostaCorrecta(ronda, nrResposta)) {
+        if (respostaCorrecta(ronda, nrResposta)) {
             long questionTime = ronda.getPergunta().getDificuldade().getDuration().getSeconds(); // segundos disponíveis para responder à questão
             long tempoRestante = questionTime - ChronoUnit.SECONDS.between(horaResposta, ronda.getStartTime()); // tempo que sobrou, caso resposta atempada
 
@@ -251,7 +258,7 @@ public class JogoServiceImpl implements JogoService {
             jogo.addScore((int) tempoRestante);
 
             return true;
-        }else {
+        } else {
             return false;
         }
     }
