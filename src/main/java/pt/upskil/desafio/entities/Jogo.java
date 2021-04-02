@@ -55,8 +55,20 @@ public class Jogo implements Comparable<Jogo> {
         this.ajudaTrocaPerguntaUsed = false;
     }
 
-    public void addScore(int score){
+    public void addScore(int score) {
         gameScore += score;
+    }
+
+    public Ronda proximaRonda() {
+        int nrRondaActual = rondaAtual.getNumero();
+
+        for (Ronda ronda : rondas) {
+            if(ronda.getNumero() == nrRondaActual + 1){
+                return ronda;
+            }
+        }
+
+        return null;
     }
 
 
