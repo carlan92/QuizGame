@@ -2,7 +2,6 @@ package pt.upskil.desafio.services;
 
 import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Pergunta;
-import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.AjudaAlreadyUsedException;
 import pt.upskil.desafio.exceptions.NoGameActiveException;

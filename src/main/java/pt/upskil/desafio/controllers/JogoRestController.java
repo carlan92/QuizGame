@@ -106,7 +106,7 @@ public class JogoRestController {
         if (jogoService.responderPergunta(userService.currentUser(), nrResposta, horaResposta)) {
             resultado.put("respostaCorrecta", "true");
 
-            if (nrResposta == jogo.getRondas().size()) {
+            if (jogo.getRondaAtual().getNumero() == jogo.getRondas().size()) {
                 // Se for a última pergunta termina o jogo
                 jogo.setFinished(true);
                 resultado.put("terminou", "true");

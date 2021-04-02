@@ -13,5 +13,6 @@ public interface JogoRepository extends JpaRepository<Jogo, Long> {
     List<Jogo> findAllByOrderByGameScoreDesc();
     List<Jogo> findAll();
     List<Jogo> findAllByFinished(boolean finished);
+    List<Jogo> findAllByFinishedOrderByGameScoreDesc(boolean finished);
 
 }

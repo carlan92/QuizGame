@@ -50,10 +50,10 @@ public class JogoServiceImpl implements JogoService {
 
     @Override
     public int highScorePosition(User user) {
-        List<Jogo> jogos = jogoRepository.findAllByOrderByGameScoreDesc();
+        List<Jogo> jogos = jogoRepository.findAllByFinishedOrderByGameScoreDesc(true);
 
         for (int i = 0; i < jogos.size(); i++) {
-            if (jogos.get(i).getUser().equals(user) && jogos.get(i).isFinished()) {
+            if (jogos.get(i).getUser().equals(user)) {
                 return i + 1;
             }
         }
