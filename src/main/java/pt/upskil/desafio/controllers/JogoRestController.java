@@ -1,5 +1,6 @@
 package pt.upskil.desafio.controllers;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +14,7 @@ import pt.upskil.desafio.services.RondaService;
 import pt.upskil.desafio.services.UserService;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
@@ -71,12 +69,13 @@ public class JogoRestController {
 
         try {
             Pergunta novaPergunta = jogoService.usarTrocaPergunta(user);
+
             List<String> perguntaParts = new ArrayList<>();
             perguntaParts.add(novaPergunta.getDescricao());
             for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
                 perguntaParts.add(novaPergunta.getRespostas().get(i).getTexto());
             }
-            result.put("result", perguntaParts.toString());
+            result.put("result", new Gson().toJson(perguntaParts));
         } catch (NoGameActiveException e) {
             result.put("erro","NoGameActiveException");
             result.put("msgErro","O jogo já está terminado.");
