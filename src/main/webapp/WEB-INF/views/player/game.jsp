@@ -125,6 +125,7 @@
     //countdown clock
     let timeleft = ${tempo};
     countDownClock()
+
     function countDownClock() {
         let downloadTimer = setInterval(function () {
             if (timeleft <= 0) {
@@ -139,7 +140,6 @@
     }
 
 
-
     function ajudaPublicoRequest() {
         document.getElementById("id_ajudaPublico").disabled = true;
         let oReq = new XMLHttpRequest();
@@ -149,10 +149,17 @@
     }
 
     function ajudaPublico() {
-        let percentages = JSON.parse(this.responseText);
+        let resposta = JSON.parse(this.responseText); // dicionário
 
-        for (let i = 0; i < 4; i++) {
-            document.getElementById("percentageSpan" + (i + 1)).innerHTML = (percentages[i] * 100).toFixed(1) + "%";
+        if (resposta.erro === "NoGameActiveException") {
+            getPaginaErro("O Jogo já não se encontra activo.")
+        } else if (resposta.erro === "AjudaAlreadyUsedException") {
+            // já usada
+        } else {
+            let percentages = JSON.parse(resposta.result);
+            for (let i = 0; i < 4; i++) {
+                document.getElementById("percentageSpan" + (i + 1)).innerHTML = (percentages[i] * 100).toFixed(1) + "%";
+            }
         }
     }
 
@@ -256,6 +263,9 @@
         oReq.send();
     }
 
+    function finishGame() {
+        window.location.replace("/player");
+    }
 
     function gameOver() {
         // go to Game Over
@@ -265,6 +275,10 @@
     function gameVictory() {
         // go to Game Victory
         window.location.replace("/player/game/victory");
+    }
+
+    function getPaginaErro(mensagem){
+        window.location.replace("/player/game/erro/" + mensagem);
     }
 
 </script>

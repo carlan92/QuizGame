@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
@@ -77,6 +78,14 @@ public class JogoController {
     public String gameVictory(ModelMap modelMap) {
         modelMap.put("message", "Ganhou o Jogo !!! Parabéns !");
         modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
+        return "components/alert-message";
+    }
+
+    @GetMapping("/player/game/erro/{mensagem}")
+    public String gameVictory(ModelMap modelMap,
+                              @PathVariable String mensagem) {
+        modelMap.put("message", mensagem);
+        modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
         return "components/alert-message";
     }
 

@@ -31,36 +31,43 @@ public class JogoRestController {
 
 
     @GetMapping("/player/game/ajudaPublico")
-    public List<Double> ajudaPublico() {
+    public Map<String, String> ajudaPublico() {
+        Map<String, String> result = new HashMap<>();
         User user = userService.currentUser();
+
         try {
-            return jogoService.usarAjudaPublico(user);
+            result.put("result", jogoService.usarAjudaPublico(user).toString());
         } catch (NoGameActiveException e) {
-            e.printStackTrace();
-            return null;
+            result.put("erro","NoGameActiveException");
+            result.put("msgErro","O jogo já está terminado.");
         } catch (AjudaAlreadyUsedException e) {
-            e.printStackTrace(); //TODO fazer apercer mensagem no html
-            return null;
+            result.put("erro","AjudaAlreadyUsedException");
+            result.put("msgErro","Ajuda já utilizada.");
         }
+        return result;
     }
 
     @GetMapping("/player/game/ajuda5050")
     public List<Integer> ajuda5050() {
+        Map<String, String> result = new HashMap<>();
         User user = userService.currentUser();
+
         try {
             return jogoService.usar5050(user);
         } catch (NoGameActiveException e) {
-            e.printStackTrace();
-            return null;
+            result.put("erro","NoGameActiveException");
+            result.put("msgErro","O jogo já está terminado.");
         } catch (AjudaAlreadyUsedException e) {
-            e.printStackTrace(); //TODO fazer apercer mensagem no html
-            return null;
+            result.put("erro","AjudaAlreadyUsedException");
+            result.put("msgErro","Ajuda já utilizada.");
         }
     }
 
     @GetMapping("/player/game/ajudaTrocaPergunta")
     public List<String> ajudaTrocaPergunta() {
+        Map<String, String> result = new HashMap<>();
         User user = userService.currentUser();
+
         try {
             Pergunta novaPergunta = jogoService.usarTrocaPergunta(user);
             List<String> perguntaParts = new ArrayList<>();
@@ -70,14 +77,14 @@ public class JogoRestController {
             }
             return perguntaParts;
         } catch (NoGameActiveException e) {
-            e.printStackTrace();
-            return null;
+            result.put("erro","NoGameActiveException");
+            result.put("msgErro","O jogo já está terminado.");
         } catch (AjudaAlreadyUsedException e) {
-            e.printStackTrace(); //TODO fazer apercer mensagem no html
-            return null;
+            result.put("erro","AjudaAlreadyUsedException");
+            result.put("msgErro","Ajuda já utilizada.");
         } catch (ObterPerguntasException e) {
             e.printStackTrace();
-            return null;
+            return null; //todo
         }
     }
 
