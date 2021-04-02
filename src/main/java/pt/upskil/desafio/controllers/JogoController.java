@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import pt.upskil.desafio.entities.Jogo;
 import pt.upskil.desafio.entities.Ronda;
 import pt.upskil.desafio.entities.User;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
@@ -56,9 +57,20 @@ public class JogoController {
 
     @GetMapping("/player/game/over")
     public String gameOver(ModelMap modelMap) {
-        modelMap.put("message", "Game Over !!!");
-        modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
-        return "components/alert-message";
+        try {
+            Jogo jogo = userService.currentUser().getJogoCorrente();
+            jogo.setFinished(true);
+            jogoService.save(jogo);
+
+            modelMap.put("message", "Game Over !!!");
+            modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            return "components/alert-message";
+        } catch (NoGameActiveException e) {
+            modelMap.put("message", "Game Over !!!");
+            modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            return "components/alert-message";
+        }
+
     }
 
     @GetMapping("/player/game/victory")

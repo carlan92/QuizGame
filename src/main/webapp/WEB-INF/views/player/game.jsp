@@ -130,7 +130,7 @@
             if (timeleft <= 0) {
                 clearInterval(downloadTimer);
                 document.getElementById("countdown").innerHTML = "Terminou<br>Tempo";
-                finishGame()
+                gameOver()
             } else {
                 document.getElementById("countdown").innerHTML = timeleft + "<br>segundos";
             }
@@ -256,10 +256,6 @@
         oReq.send();
     }
 
-    function finishGame() {
-        // go to player main page
-        window.location.replace("/player/dashboard");
-    }
 
     function gameOver() {
         // go to Game Over

@@ -89,7 +89,7 @@ public class JogoRestController {
 
     @GetMapping("/player/game/verificar-resposta/{nrResposta}/{tempoRestante}")
     public Map<String, String> verificarResposta(@PathVariable int nrResposta,
-                                                 @PathVariable int tempoRestante) throws NoGameActiveException {
+                                                 @PathVariable int tempoRestante) throws NoGameActiveException  {//TODO
         Map<String, String> resultado = new HashMap<>();
 
         Jogo jogo = userService.currentUser().getJogoCorrente();
