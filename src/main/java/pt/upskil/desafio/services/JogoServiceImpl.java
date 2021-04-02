@@ -46,7 +46,7 @@ public class JogoServiceImpl implements JogoService {
         List<Jogo> jogos = jogoRepository.findAllByOrderByGameScoreDesc();
 
         for (int i = 0; i < jogos.size(); i++) {
-            if (jogos.get(0).getUser().equals(user)) {
+            if (jogos.get(i).getUser().equals(user)) {
                 return i + 1;
             }
         }
