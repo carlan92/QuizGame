@@ -12,7 +12,6 @@ import pt.upskil.desafio.repositories.RondaRepository;
 import pt.upskil.desafio.services.JogoService;
 import pt.upskil.desafio.services.UserService;
 
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +24,8 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 public class JogoRestController {
     @Autowired
     UserService userService;
-
     @Autowired
     JogoService jogoService;
-
     @Autowired
     RondaRepository rondaRepository;
 
@@ -107,10 +104,8 @@ public class JogoRestController {
         if (respostas.get(nrResposta - 1).isCerta()) {
             resultado.put("respostaCorrecta", "true");
 
-            Ronda novaRonda = jogo.proximaRonda();
-            Pergunta novaPergunta = novaRonda.getPergunta();
-            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos() + tempoRestante); //TODO adicionar pontos pelo tempo restante
-            jogo.setRondaAtual(novaRonda);
+            jogo.addScore(ronda.getPergunta().getDificuldade().getPontos());
+            jogo.addScore(tempoRestante);
 
             if (nrResposta == jogo.getRondas().size()) {
                 // Se for a última pergunta termina o jogo
@@ -118,6 +113,10 @@ public class JogoRestController {
                 resultado.put("terminou", "true");
             } else {
                 // Se resposta correcta enviar dados da nova pergunta
+                Ronda novaRonda = jogo.proximaRonda();
+                Pergunta novaPergunta = novaRonda.getPergunta();
+                jogo.setRondaAtual(novaRonda);
+
                 resultado.put("pergunta", novaPergunta.getDescricao());
                 resultado.put("resposta1", novaPergunta.getRespostas().get(0).getTexto());
                 resultado.put("resposta2", novaPergunta.getRespostas().get(1).getTexto());
@@ -135,9 +134,7 @@ public class JogoRestController {
             resultado.put("respostaCorrecta", "false");
             jogoService.fecharJogos(userService.currentUser());
         }
-
         return resultado;
     }
-
 
 }
