@@ -359,3 +359,6 @@ select option:disabled {
     padding-left: 5px;
 }
 
+.error-color {
+    color: red;
+}

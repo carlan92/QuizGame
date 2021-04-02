@@ -48,12 +48,12 @@ public class JogoRestController {
     }
 
     @GetMapping("/player/game/ajuda5050")
-    public List<Integer> ajuda5050() {
+    public Map<String, String> ajuda5050() {
         Map<String, String> result = new HashMap<>();
         User user = userService.currentUser();
 
         try {
-            return jogoService.usar5050(user);
+            result.put("result", jogoService.usar5050(user).toString());
         } catch (NoGameActiveException e) {
             result.put("erro","NoGameActiveException");
             result.put("msgErro","O jogo já está terminado.");
@@ -61,10 +61,11 @@ public class JogoRestController {
             result.put("erro","AjudaAlreadyUsedException");
             result.put("msgErro","Ajuda já utilizada.");
         }
+        return result;
     }
 
     @GetMapping("/player/game/ajudaTrocaPergunta")
-    public List<String> ajudaTrocaPergunta() {
+    public Map<String, String> ajudaTrocaPergunta() {
         Map<String, String> result = new HashMap<>();
         User user = userService.currentUser();
 
@@ -75,7 +76,7 @@ public class JogoRestController {
             for (int i = 0; i < Pergunta.NUM_RESPOSTAS; i++) {
                 perguntaParts.add(novaPergunta.getRespostas().get(i).getTexto());
             }
-            return perguntaParts;
+            result.put("result", perguntaParts.toString());
         } catch (NoGameActiveException e) {
             result.put("erro","NoGameActiveException");
             result.put("msgErro","O jogo já está terminado.");
@@ -83,9 +84,10 @@ public class JogoRestController {
             result.put("erro","AjudaAlreadyUsedException");
             result.put("msgErro","Ajuda já utilizada.");
         } catch (ObterPerguntasException e) {
-            e.printStackTrace();
-            return null; //todo
+            result.put("erro","ObterPerguntasException");
+            result.put("msgErro","Não foi possivel obter uma nova pergunta.");
         }
+        return result;
     }
 
 

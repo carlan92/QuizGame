@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="error-color" id="ajuda-error-box"></div>
                 <div>
                     <button type="button" onclick="finishGameRequest()" class="btn-green btn-w20">Sair</button>
                     <button type="button" onclick="checkAnswerRequest()" class="btn-green btn-w20">Próxima</button>
@@ -152,9 +152,9 @@
         let resposta = JSON.parse(this.responseText); // dicionário
 
         if (resposta.erro === "NoGameActiveException") {
-            getPaginaErro("O Jogo já não se encontra activo.")
+            getPaginaErro("O Jogo já não se encontra activo.");
         } else if (resposta.erro === "AjudaAlreadyUsedException") {
-            // já usada
+            document.getElementById("ajuda-error-box").innerHTML = resposta.msgErro;
         } else {
             let percentages = JSON.parse(resposta.result);
             for (let i = 0; i < 4; i++) {
@@ -172,16 +172,24 @@
     }
 
     function ajuda5050() {
-        let respostasEliminadasNumeros = JSON.parse(this.responseText);
-        respostasEliminadasNumeros.forEach(respostaNumero => {
-                let buttonId = "btnradio" + respostaNumero;
-                let labelId = buttonId + "label";
-                let spanId = "percentageSpan" + respostaNumero;
-                document.getElementById(spanId).style.display = "none";
-                document.getElementById(labelId).style.display = "none";
-                document.getElementById(buttonId).checked = false;
-            }
-        );
+        let resposta = JSON.parse(this.responseText);
+
+        if (resposta.erro === "NoGameActiveException") {
+            getPaginaErro("O Jogo já não se encontra activo.");
+        } else if (resposta.erro === "AjudaAlreadyUsedException") {
+            document.getElementById("ajuda-error-box").innerHTML = resposta.msgErro;
+        } else {
+            let respostasEliminadasNumeros = JSON.parse(resposta.result);
+            respostasEliminadasNumeros.forEach(respostaNumero => {
+                    let buttonId = "btnradio" + respostaNumero;
+                    let labelId = buttonId + "label";
+                    let spanId = "percentageSpan" + respostaNumero;
+                    document.getElementById(spanId).style.display = "none";
+                    document.getElementById(labelId).style.display = "none";
+                    document.getElementById(buttonId).checked = false;
+                }
+            );
+        }
     }
 
     function ajudaTrocaPerguntaRequest() {
@@ -193,17 +201,26 @@
     }
 
     function ajudaTrocaPergunta() {
-        let perguntaParts = JSON.parse(this.responseText);
+        let resposta = JSON.parse(this.responseText);
 
-        document.getElementById("idPergunta").innerHTML = perguntaParts[0];
+        if (resposta.erro === "NoGameActiveException") {
+            getPaginaErro("O Jogo já não se encontra activo.");
+        } else if (resposta.erro === "AjudaAlreadyUsedException") {
+            document.getElementById("ajuda-error-box").innerHTML = resposta.msgErro;
+        } else if (resposta.erro === "ObterPerguntasException") {
+            getPaginaErro("Não foi possivel buscar uma nova pergunta.");
+        } else {
+            let perguntaParts = JSON.parse(resposta.result);
+            document.getElementById("idPergunta").innerHTML = perguntaParts[0];
 
-        for (let i = 1; i < perguntaParts.length; i++) {
-            document.getElementById("btnradio" + i + "label").innerHTML = perguntaParts[i];
-            document.getElementById("btnradio" + i + "label").style.display = "";
-            document.getElementById("btnradio" + i).checked = false;
+            for (let i = 1; i < perguntaParts.length; i++) {
+                document.getElementById("btnradio" + i + "label").innerHTML = perguntaParts[i];
+                document.getElementById("btnradio" + i + "label").style.display = "";
+                document.getElementById("btnradio" + i).checked = false;
 
-            document.getElementById("percentageSpan" + i).innerHTML = "";
-            document.getElementById("percentageSpan" + i).style.display = "";
+                document.getElementById("percentageSpan" + i).innerHTML = "";
+                document.getElementById("percentageSpan" + i).style.display = "";
+            }
         }
     }
 
