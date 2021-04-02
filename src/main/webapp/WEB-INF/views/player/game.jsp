@@ -21,21 +21,21 @@
                         <div class="nav">
                             <li>
                                 <button type="button" onclick="ajudaPublicoRequest()" id="id_ajudaPublico"
-                                        class="nav-link text-black-50">
+                                        class="nav-link text-black-50" <c:if test="${ronda.getJogo().isAjudaPublicoUsed()}">disabled</c:if>>
                                     <img src="/imagens/public-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda do público
                                 </button>
                             </li>
                             <li>
                                 <button type="button" onclick="ajuda5050Request()" id="id_ajuda5050"
-                                        class="nav-link text-black-50">
+                                        class="nav-link text-black-50" <c:if test="${ronda.getJogo().isAjuda5050Used()}">disabled</c:if>>
                                     <img src="/imagens/50-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda 50/50
                                 </button>
                             </li>
                             <li>
                                 <button type="button" onclick="ajudaTrocaPerguntaRequest()" id="id_ajudaTrocaPergunta"
-                                        class="nav-link text-black-50">
+                                        class="nav-link text-black-50"<c:if test="${ronda.getJogo().isAjudaTrocaPerguntaUsed()}">disabled</c:if>>
                                     <img src="/imagens/change-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Troca pergunta
                                 </button>
@@ -46,13 +46,13 @@
                             <li class="nav-link text-black-50 ">
                                 <div>
                                     <img src="/imagens/number-question.svg" alt="ranking_logo" class="header_icon"/>
-                                    <span id="id_ronda">1</span>/15
+                                    <span id="id_ronda">${ronda.getNumero()}</span>/15
                                 </div>
                             </li>
                             <li class="nav-link text-black-50">
                                 <div>
                                     <img src="/imagens/points-icon.svg" alt="ranking_logo" class="header_icon"/>
-                                    <span id="id_xp">0</span> xp
+                                    <span id="id_xp">${ronda.getJogo().getGameScore()}</span> xp
                                 </div>
                             </li>
                             <li class="nav-link text-black-50">

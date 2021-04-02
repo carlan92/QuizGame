@@ -11,10 +11,12 @@ import pt.upskil.desafio.entities.*;
 import pt.upskil.desafio.exceptions.NoGameActiveException;
 import pt.upskil.desafio.exceptions.ObterPerguntasException;
 import pt.upskil.desafio.services.JogoService;
+import pt.upskil.desafio.services.RondaService;
 import pt.upskil.desafio.services.UserService;
 import pt.upskil.desafio.utils.AlertMessageImage;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
@@ -25,6 +27,8 @@ public class JogoController {
     JogoService jogoService;
     @Autowired
     UserService userService;
+    @Autowired
+    RondaService rondaService;
 
     @GetMapping("/player/game")
     public String iniciarJogo(ModelMap modelMap) throws NoGameActiveException {
@@ -93,16 +97,28 @@ public class JogoController {
     }
 
     @GetMapping("/player/game/continue")
-    public String continuarJogo(ModelMap modelMap) throws NoGameActiveException {
+    public String continuarJogo(ModelMap modelMap) {
 
-        Jogo jogo = userService.currentUser().getJogoCorrente();
+        Jogo jogo = null;
+        try {
+            jogo = userService.currentUser().getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            modelMap.put("message", "O jogo já se encontra terminado!");
+            modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            return "components/alert-message";
+        }
+
         Ronda ronda = jogo.getRondaAtual();
         Pergunta pergunta = ronda.getPergunta();
+        jogo.addScore(-100);
+        jogoService.save(jogo);
+        ronda.setStartTime(LocalDateTime.now());
+        rondaService.save(ronda);
 
         modelMap.put("ronda", ronda);
         modelMap.put("pontos", Integer.toString(jogo.getGameScore()));
         modelMap.put("tempo", Long.toString(pergunta.getDificuldade().getDuration().get(SECONDS)));
-        //todo rever erros
+
         return "player/game";
     }
 }

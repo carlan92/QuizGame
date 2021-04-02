@@ -57,6 +57,9 @@ public class Jogo implements Comparable<Jogo> {
 
     public void addScore(int score) {
         gameScore += score;
+        if(gameScore<0){
+            gameScore=0;
+        }
     }
 
     public Ronda proximaRonda() {
