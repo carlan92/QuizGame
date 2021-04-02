@@ -54,4 +54,18 @@ public class JogoController {
         return "player/game";
     }
 
+    @GetMapping("/player/game/over")
+    public String gameOver(ModelMap modelMap) {
+        modelMap.put("message", "Game Over !!!");
+        modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+        return "components/alert-message";
+    }
+
+    @GetMapping("/player/game/victory")
+    public String gameVictory(ModelMap modelMap) {
+        modelMap.put("message", "Ganhou o Jogo !!! Parabéns !");
+        modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
+        return "components/alert-message";
+    }
+
 }

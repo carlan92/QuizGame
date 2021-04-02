@@ -222,12 +222,12 @@
 
         // game over or new question
         if (reply.respostaCorrecta.toLowerCase() === "false") {
-            // game over screen // TODO
-            finishGameRequest()
+            // game over screen
+            gameOver()
         } else if (reply.terminou.toLowerCase() === "true") {
             // o jogo terminou com a última pergunta com resposta certa
-            // página de vitória // TODO
-            finishGameRequest()
+            // página de vitória
+            gameVictory()
         } else {
             // show new question and update page
             for (let i = 1; i < 5; i++) {
@@ -245,7 +245,7 @@
             document.getElementById("btnradio4label").innerHTML = reply.resposta4;
             document.getElementById("id_ronda").innerHTML = reply.rondaNr;
             document.getElementById("id_xp").innerHTML = reply.pontos;
-            timeleft = parseInt(reply.rondaTempo); //TODO
+            timeleft = parseInt(reply.rondaTempo);
         }
     }
 
@@ -259,6 +259,16 @@
     function finishGame() {
         // go to player main page
         window.location.replace("/player/dashboard");
+    }
+
+    function gameOver() {
+        // go to Game Over
+        window.location.replace("/player/game/over");
+    }
+
+    function gameVictory() {
+        // go to Game Victory
+        window.location.replace("/player/game/victory");
     }
 
 </script>
