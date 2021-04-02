@@ -17,6 +17,14 @@
                         Start
                     </a>
                 </li>
+                <c:if test="${load.equals(true)}">
+                <li>
+                    <a href="/player/game/continue" class="nav-link text-white">
+                        <img src="/imagens/icon_play.svg" alt="start_logo" class="header_icon" />
+                        Continuar
+                    </a>
+                </li>
+                 </c:if>
                 <li>
                     <a href="/player/ranking" class="nav-link text-white">
                         <img src="/imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />

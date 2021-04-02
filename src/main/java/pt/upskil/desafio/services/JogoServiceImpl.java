@@ -274,5 +274,15 @@ public class JogoServiceImpl implements JogoService {
         LocalDateTime timeLimit = ronda.getStartTime().plusSeconds(questionTime); // tempo limite para responder
         return horaResposta.isBefore(timeLimit);
     }
+
+    @Override
+    public boolean existeJogoAberto(User user){
+        try {
+            user.getJogoCorrente();
+        } catch (NoGameActiveException e) {
+            return false;
+        }
+        return true;
+    }
 }
 

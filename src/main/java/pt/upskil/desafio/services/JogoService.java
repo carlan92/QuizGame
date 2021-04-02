@@ -23,4 +23,5 @@ public interface JogoService {
     Pergunta usarTrocaPergunta(User user) throws NoGameActiveException, AjudaAlreadyUsedException, ObterPerguntasException;
     List<Jogo> findAllByFinished(boolean finished);
     boolean responderPergunta(User user, int nrResposta, LocalDateTime horaResposta) throws NoGameActiveException;
+    boolean existeJogoAberto(User user);
 }
