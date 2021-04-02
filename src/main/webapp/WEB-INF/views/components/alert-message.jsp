@@ -26,7 +26,7 @@
 
         <div class="perfil-row">
             <div class="cell-back">
-                <a href="/" class="btn btn-outline-dark btn-back">Regressar à página inicial</a>
+                <a href="/player" class="btn btn-outline-dark btn-back">Regressar à página inicial</a>
             </div>
         </div>
 
