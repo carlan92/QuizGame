@@ -244,6 +244,11 @@
         console.log(reply)
         console.log(reply.respostaCorrecta)
 
+        if(reply.erro ==="NoGameActiveException") {
+           getPaginaErro("O Jogo já não se encontra activo.");
+           return;
+        }
+
         // game over or new question
         if (reply.respostaCorrecta.toLowerCase() === "false") {
             // game over screen

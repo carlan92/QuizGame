@@ -32,8 +32,6 @@ public class UserController {
     @Autowired
     JogoService jogoService;
 
-    // TODO se já existir jogo, então continua (adicionar botão e lógica)
-
     //registration
     @GetMapping(value = "/public/registration")
     public String showRegistrationPage(ModelMap modelMap) {
