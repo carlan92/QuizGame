@@ -129,7 +129,7 @@
 
     function ajudaPublico() {
         let percentages = JSON.parse(this.responseText);
-        console.log(percentages);
+
         for (let i = 0; i < 4; i++) {
             document.getElementById("percentageSpan" + (i + 1)).innerHTML = (percentages[i] * 100).toFixed(1) + "%";
         }
@@ -170,6 +170,10 @@
             document.getElementById("btnradio" + i + "label").innerHTML = perguntaParts[i];
             document.getElementById("percentageSpan" + i).style.display = "";
             document.getElementById("btnradio" + i + "label").style.display = "";
+
+
+            document.getElementById("percentageSpan" + i).innerHTML = "";
+
         }
     }
 
