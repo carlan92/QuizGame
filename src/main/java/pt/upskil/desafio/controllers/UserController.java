@@ -11,6 +11,7 @@ import pt.upskil.desafio.entities.*;
 import pt.upskil.desafio.exceptions.AdicionarPerguntaException;
 import pt.upskil.desafio.exceptions.ObterEstatisticaException;
 import pt.upskil.desafio.services.*;
+import pt.upskil.desafio.utils.AlertMessageImage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,6 +163,10 @@ public class UserController {
 
         try {
             perguntaServico.addicionarPergunta(perguntaObj);
+            modelMap.put("message", "Pergunta adicionada.");
+            modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
+            return "components/alert-message";
+
         } catch (AdicionarPerguntaException e) {
             List<Dificuldade> dificuldades = Arrays.asList(Dificuldade.values());
             modelMap.put("pergunta", pergunta);
@@ -175,10 +180,6 @@ public class UserController {
             modelMap.put("msgError", "Não foi possível adicionar a questão.");
             return "/player/add-question";
         }
-
-        System.out.println("Pergunta adicionada");
-        // TODO página de confirmação
-        return "redirect:/player/dashboard";
     }
 
     //ranking
