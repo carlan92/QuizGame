@@ -9,7 +9,7 @@
             <a href="/player/dashboard" class="text-black-50 text-decoration-none header_logo" title="Página Inicial">
                 <img src="/imagens/logotipo.svg" alt="quiz_logo" class="logo" />
             </a>
-            <div class="header_logo welcome"> ${jogo.getUser().getUsername()} username</div>
+            <div class="header_logo welcome"> ${user.getUsername()}</div>
             <ul class="nav text-small header_buttons">
                 <c:if test="${load.equals(true)}">
                 <li>

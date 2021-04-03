@@ -33,6 +33,7 @@ public class JogoController {
     @GetMapping("/player/game")
     public String iniciarJogo(ModelMap modelMap) throws NoGameActiveException {
         User user = userService.currentUser();
+        modelMap.put("user", user);
 
         try {
             jogoService.iniciarJogo(user);
@@ -65,6 +66,8 @@ public class JogoController {
     public String gameOver(ModelMap modelMap) {
         try {
             Jogo jogo = userService.currentUser().getJogoCorrente();
+            User user = userService.currentUser();
+            modelMap.put("user", user);
             jogo.setFinished(true);
             jogoService.save(jogo);
 
@@ -81,6 +84,8 @@ public class JogoController {
 
     @GetMapping("/player/game/victory")
     public String gameVictory(ModelMap modelMap) {
+        User user = userService.currentUser();
+        modelMap.put("user", user);
         modelMap.put("message", "Ganhou o Jogo !!! Parabéns !");
         modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
         return "components/alert-message";
@@ -90,6 +95,7 @@ public class JogoController {
     public String gameVictory(ModelMap modelMap,
                               @PathVariable String mensagem) {
         User user= userService.currentUser();
+        modelMap.put("user", user);
         modelMap.put("load", jogoService.existeJogoAberto(user));
         modelMap.put("message", mensagem);
         modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
@@ -98,6 +104,8 @@ public class JogoController {
 
     @GetMapping("/player/game/continue")
     public String continuarJogo(ModelMap modelMap) {
+        User user = userService.currentUser();
+        modelMap.put("user", user);
 
         Jogo jogo = null;
         try {

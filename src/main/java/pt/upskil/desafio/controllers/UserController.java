@@ -112,6 +112,7 @@ public class UserController {
     @GetMapping({"/player/dashboard", "/player"})
     public String goToDashboard(ModelMap modelMap) {
         User user = userService.currentUser();
+        modelMap.put("user", user);
         modelMap.put("load", jogoService.existeJogoAberto(user));
 
         long nrJogadores = userService.countAllUsers();
@@ -138,6 +139,7 @@ public class UserController {
     public String showPageAdicionarPergunta(ModelMap modelMap) {
         User user= userService.currentUser();
         modelMap.put("load", jogoService.existeJogoAberto(user));
+        modelMap.put("user", user);
         List<Dificuldade> dificuldades = Arrays.asList(Dificuldade.values());
         modelMap.put("dificuldades", dificuldades);
         return "/player/add-question";
@@ -163,6 +165,7 @@ public class UserController {
                 dificuldadeType);
         User user= userService.currentUser();
         modelMap.put("load", jogoService.existeJogoAberto(user));
+        modelMap.put("user", user);
         try {
             perguntaServico.addicionarPergunta(perguntaObj);
             modelMap.put("message", "Pergunta adicionada.");
@@ -189,6 +192,7 @@ public class UserController {
     public String goToRankingTable(ModelMap modelMap) {
         User user= userService.currentUser();
         modelMap.put("load", jogoService.existeJogoAberto(user));
+        modelMap.put("user", user);
         List<Jogo> jogos = new ArrayList<>();
         jogos.addAll(jogoService.findAllByFinished(true));
         jogos.sort(Collections.reverseOrder());
