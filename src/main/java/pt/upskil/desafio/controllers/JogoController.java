@@ -40,6 +40,7 @@ public class JogoController {
         } catch (ObterPerguntasException e) {
             modelMap.put("message", "Não foi possível buscar as perguntas para o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
             return "components/alert-message";
         }
 
@@ -50,6 +51,7 @@ public class JogoController {
         } catch (NoGameActiveException e) {
             modelMap.put("message", "Não foi possível encontrar o jogo.");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
             return "components/alert-message";
         }
 
@@ -104,6 +106,8 @@ public class JogoController {
         modelMap.put("load", jogoService.existeJogoAberto(user));
         modelMap.put("message", mensagem);
         modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+        modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
+
         return "components/alert-message";
     }
 
@@ -118,6 +122,8 @@ public class JogoController {
         } catch (NoGameActiveException e) {
             modelMap.put("message", "O jogo já se encontra terminado!");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
+
             return "components/alert-message";
         }
 

@@ -170,6 +170,7 @@ public class UserController {
             perguntaServico.addicionarPergunta(perguntaObj);
             modelMap.put("message", "Pergunta adicionada.");
             modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.SUCCESS.getAudioURL());
             return "components/alert-message";
 
         } catch (AdicionarPerguntaException e) {
