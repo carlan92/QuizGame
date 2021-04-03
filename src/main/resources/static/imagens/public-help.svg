@@ -36,13 +36,14 @@
      inkscape:window-height="997"
      id="namedview5104"
      showgrid="false"
-     inkscape:zoom="23.149306"
-     inkscape:cx="16"
-     inkscape:cy="16"
+     inkscape:zoom="15.279778"
+     inkscape:cx="26.009161"
+     inkscape:cy="16.931443"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
-     inkscape:current-layer="_79-users" />
+     inkscape:current-layer="_79-users"
+     inkscape:document-rotation="0" />
   <defs
      id="defs5085">
     <style
@@ -60,31 +61,31 @@
        cy="13"
        r="5"
        id="circle5089"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
     <path
        class="cls-1"
        d="m 23,27.222439 a 7,7 0 0 0 -14,0 z"
        id="path5091"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
     <path
        class="cls-1"
        d="M 24,14 A 5,5 0 1 0 20,6"
        id="path5093"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
     <path
        class="cls-1"
        d="m 25,24 h 6 a 7,7 0 0 0 -7,-7"
        id="path5095"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
     <path
        class="cls-1"
        d="M 12,6 A 5,5 0 1 0 8,14"
        id="path5097"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
     <path
        class="cls-1"
        d="M 8,17 A 7,7 0 0 0 1,24 H 7"
        id="path5099"
-       style="fill:none;fill-opacity:1;stroke:#8d8d8d;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#288db4;stroke-opacity:1" />
   </g>
 </svg>

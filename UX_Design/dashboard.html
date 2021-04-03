@@ -14,34 +14,36 @@
     <link rel="stylesheet" href="style.css" />
 
 <body>
-    <header class="px-3 py-2 bg-dark text-black">
+    <header class="px-3 py-2 bg-light text-black">
         <div class="container">
             <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-                <a href="#" class="text-black-50 text-decoration-none header_logo">
-                    <img src="imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
-
+                <a href="#" title="Página Inicial" class="text-black-50 text-decoration-none header_logo" >
+                    <img src="imagens/logotipo.svg" alt="quiz_logo" class="logo" />
                 </a>
+
+                <div class="header_logo welcome"> carlan92 </div>
+                
                 <ul class="nav text-small header_buttons">
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link hover_buttons">
                             <img src="imagens/icon_play.svg" alt="start_logo" class="header_icon" />
                             Start
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link hover_buttons">
                             <img src="imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />
                             Ranking
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link hover_buttons">
                             <img src="imagens/patch-question.svg" alt="question_logo" class="header_icon" />
                             Adicionar pergunta
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link hover_buttons">
                             <img src="imagens/icon_logout.svg" alt="logout_logo" class="header_icon" />
                             Terminar Sessão
                         </a>
@@ -58,11 +60,11 @@
                     <div class="card2">
                         <div class="card-body2">
                             <h2>
-                                <span>127</span>
+                                <span>${nrJogadores}</span>
                             </h2>
 
                             <h3>Jogadores registados</h3>
-                            <img src="imagens/icon-player.svg" alt="controller_logo" class="dash_icon" />
+                            <img src="/imagens/icon-player.svg" alt="controller_logo" class="dash_icon" />
 
                         </div>
                     </div>
@@ -74,11 +76,11 @@
                     <div class="card2">
                         <div class="card-body2">
                             <h2>
-                                <span>100</span>
+                                <span>${nrPerguntas}</span>
                             </h2>
 
                             <h3>Perguntas registadas</h3>
-                            <img src="imagens/icon-question.svg" alt="question_logo" class="dash_icon" />
+                            <img src="/imagens/icon-question.svg" alt="question_logo" class="dash_icon" />
 
                         </div>
                     </div>
@@ -90,18 +92,25 @@
                     <div class="card2">
                         <div class="card-body2">
                             <h2>
-                                <span>#2</span>
+                                <span>#1 - 4000 xp</span>
                             </h2>
                             <h3>Posição actual no ranking
                             </h3>
-                            <img src="imagens/icon-trophy.svg" alt="trophy_logo" class="dash_icon" />
+                            <img src="/imagens/icon-trophy.svg" alt="trophy_logo" class="dash_icon" />
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="logotipo_dash_icon">
+            <a href="" class="start-text">
+            <img src="/imagens/icon_play.svg" alt="trophy_logo" class="logotipo_dash" />
+            <span class="start-text2">START QUIZ </span>
+            </a>
+        </div>
     </div>
+
 
     <footer class="bg-dark text-center text-white">
         <!-- Copyright -->

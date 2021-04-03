@@ -15,7 +15,7 @@
 
     <div class="white_box ">
         <div class="perfil-row">
-            <img src="/imagens/draw_login.svg" alt="fill form" class="add-question-img" />
+            <img src="/imagens/minion-login.png" alt="login-img" class="add-question-img" />
             <h3 class="title_next_appt">Iniciar sessão</h3>
         </div>
 

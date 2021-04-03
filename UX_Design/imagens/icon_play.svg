@@ -26,12 +26,27 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs848" />
+     id="defs848">
+    <marker
+       style="overflow:visible"
+       id="marker8149"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path8147" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -41,20 +56,26 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1386"
-     inkscape:window-height="721"
+     inkscape:window-width="1680"
+     inkscape:window-height="997"
      id="namedview846"
      showgrid="false"
-     inkscape:zoom="0.92619858"
+     inkscape:zoom="1.5921467"
      inkscape:cx="256"
      inkscape:cy="256"
      inkscape:window-x="0"
      inkscape:window-y="25"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg844" />
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg844"
+     inkscape:document-rotation="0" />
   <path
      fill="currentColor"
      d="M 256,8 C 119,8 8,119 8,256 8,393 119,504 256,504 393,504 504,393 504,256 504,119 393,8 256,8 Z m 115.7,272 -176,101 C 179.9,389.8 160,378.5 160,360 V 152 c 0,-18.4 19.8,-29.8 35.7,-21 l 176,107 c 16.4,9.2 16.4,32.9 0,42 z"
      id="path842"
      style="opacity:1;fill:#5bc669;fill-opacity:1" />
+  <path
+     class="st0"
+     d="M 187.92034,125.71362 392.00696,238.3807 c 13.73661,7.51114 13.73661,26.28898 0,33.80012 L 187.92034,384.84791 c -13.73661,7.51113 -29.43558,-1.8778 -29.43558,-16.90008 V 142.61369 c 0,-15.02228 15.69897,-24.41121 29.43558,-16.90007 z"
+     id="path6482"
+     style="fill:#eeeeee;fill-opacity:1;stroke-width:19.1961" />
 </svg>

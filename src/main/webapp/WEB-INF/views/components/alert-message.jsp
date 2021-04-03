@@ -12,12 +12,11 @@
 <%@ include file="../components/header.jsp" %>
 
 <div class="main">
-    <!--menu da direita-->
     <div class="white_box">
         <div class="perfil-main-col">
             <div class="perfil-row">
                 <div class="perfil-row">
-                    <img src="${imageURL}" alt="fill form" class="img-fill-form"/>
+                    <img src="${imageURL}" alt="alert-img" class="img-fill-form"/>
                     <h3 class="title_next_appt">${message}</h3>
                 </div>
             </div>
@@ -26,14 +25,14 @@
 
         <div class="perfil-row">
             <div class="cell-back">
-                <a href="/player" class="btn btn-outline-dark btn-back">Regressar à página inicial</a>
+                <a href="/player" class="btn btn-green btn-back">Regressar à página inicial</a>
             </div>
         </div>
 
         <c:if test="${hasButton2}">
             <div class="perfil-row">
                 <div class="cell-back">
-                    <a href="${button2_url}" class="btn btn-outline-dark btn-back">${button2_text}</a>
+                    <a href="${button2_url}" class="btn btn-green btn-back">${button2_text}</a>
                 </div>
             </div>
         </c:if>

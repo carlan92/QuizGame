@@ -14,7 +14,7 @@
     <div class="white_box">
 
         <div class="perfil-row">
-            <img src="/imagens/add-question.svg" alt="fill form" class="add-question-img" />
+            <img src="/imagens/minion-recover.png" alt="recover-img" class="add-question-img" />
             <h3 class="title_next_appt">Recuperar Palavra-passe</h3>
         </div>
 

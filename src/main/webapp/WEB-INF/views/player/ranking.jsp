@@ -12,7 +12,7 @@
     <div class="main">
         <div class="white_box ">
             <div class="perfil-row">
-                <img src="/imagens/draw-ranking.svg" alt="ranking-logo" class="add-question-img" />
+                <img src="/imagens/minion-ranking.png" alt="ranking-logo" class="add-question-img" />
                 <h3 class="title_next_appt">Ranking</h3>
             </div>
 

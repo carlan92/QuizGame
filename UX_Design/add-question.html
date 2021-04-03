@@ -15,34 +15,35 @@
 </head>
 
 <body>
-    <header class="px-3 py-2 bg-dark text-black">
+    <header class="px-3 py-2 bg-light text-black">
         <div class="container">
             <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
                 <a href="#" class="text-black-50 text-decoration-none header_logo">
-                    <img src="imagens/logo_quiz.svg" alt="quiz_logo" class="logo" />
+                    <img src="imagens/logotipo.svg" alt="quiz_logo" class="logo" />
 
                 </a>
+                <div class="header_logo welcome"> carlan92 </div>
                 <ul class="nav text-small header_buttons">
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-black-50">
                             <img src="imagens/icon_play.svg" alt="start_logo" class="header_icon" />
                             Start
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-black-50">
                             <img src="imagens/icon_ranking.svg" alt="ranking_logo" class="header_icon" />
                             Ranking
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-black-50">
                             <img src="imagens/patch-question.svg" alt="question_logo" class="header_icon" />
                             Adicionar pergunta
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-black-50">
                             <img src="imagens/icon_logout.svg" alt="logout_logo" class="header_icon" />
                             Terminar Sessão
                         </a>
@@ -52,66 +53,70 @@
         </div>
     </header>
 
+
     <div class="main">
         <div class="white_box ">
 
             <div class="perfil-row">
-                <img src="imagens/add-question.svg" alt="add-question" class="add-question-img" />
+                <img src="imagens/minion-add-question.svg" alt="add-question" class="add-question-img" />
                 <h3 class="title_next_appt">Adicionar pergunta</h3>
 
             </div>
+            <div class="conjunto-respostas">
+                <div class="card-body">
+                    <input type="text" class="form-control add-pergunta" placeholder="Pergunta">
 
-            <div class="card-body">
-                <input type="text" class="form-control" placeholder="Pergunta">
+                    <div class="input-group">
+                        <div class="input-group-text">
 
-                <div class="input-group">
-                    <div class="input-group-text">
+                            <input class="form-check-input mt-0" type="radio" name="selection" checked value=""
+                                aria-label="Radio button for following text input">
+                        </div>
+                        <input type="text" class="form-control" placeholder="Resposta 1">
 
-                        <input class="form-check-input mt-0" type="radio" name="selection" checked value=""
-                            aria-label="Radio button for following text input">
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 1">
-                    
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
+                    <div class="input-group">
+                        <div class="input-group-text">
 
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                            aria-label="Radio button for following text input">
+                            <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                                aria-label="Radio button for following text input">
+                        </div>
+                        <input type="text" class="form-control" placeholder="Resposta 2">
+
+
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 2">
+                    <div class="input-group">
+                        <div class="input-group-text">
+
+                            <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                                aria-label="Radio button for following text input">
+                        </div>
+                        <input type="text" class="form-control" placeholder="Resposta 3">
 
 
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
-
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                            aria-label="Radio button for following text input">
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 3">
+                    <div class="input-group">
+                        <div class="input-group-text">
+
+                            <input class="form-check-input mt-0" type="radio" name="selection" value=""
+                                aria-label="Radio button for following text input">
+                        </div>
+                        <input type="text" class="form-control" placeholder="Resposta 4">
 
 
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
-
-                        <input class="form-check-input mt-0" type="radio" name="selection" value=""
-                            aria-label="Radio button for following text input">
                     </div>
-                    <input type="text" class="form-control" placeholder="Resposta 4">
-
 
                 </div>
                 <div>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select select-dificuldade" aria-label="Default select example">
                         <option selected>Escolha o nível de dificuldade</option>
                         <option value="1">Fácil</option>
                         <option value="2">Intermédia</option>
                         <option value="3">Díficl</option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-green">Guardar</button>
+
+                <button type="button" class="btn btn-green btn-w40">Guardar</button>
             </div>
         </div>
     </div>

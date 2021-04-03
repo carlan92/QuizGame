@@ -15,7 +15,7 @@
 
         <div class="perfil-main-col">
             <div class="perfil-row">
-                <img src="/imagens/add-question.svg" alt="fill form" class="add-question-img" />
+                <img src="/imagens/minion-registo.png" alt="registo-img" class="add-question-img" />
                 <h3 class="title_next_appt">Registo do Utilizador</h3>
             </div>
         </div>

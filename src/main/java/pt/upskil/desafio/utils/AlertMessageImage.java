@@ -2,8 +2,8 @@ package pt.upskil.desafio.utils;
 
 public enum AlertMessageImage {
     // Alert message image
-    FAILURE("/imagens/draw_error.svg"),
-    SUCCESS("/imagens/draw_success.svg");
+    FAILURE("/imagens/minion-error.png"),
+    SUCCESS("/imagens/minion_success.png");
 
     private final String imageURL;
 

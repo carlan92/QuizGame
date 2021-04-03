@@ -59,6 +59,13 @@
             </div>
         </div>
     </div>
+    <div class="logotipo_dash_icon">
+        <a href="/player/game" class="start-text">
+            <img src="/imagens/icon_play.svg" alt="start_logo" class="logotipo_dash" />
+            <span class="start-text2">START QUIZ </span>
+        </a>
+    </div>
+
 </div>
 
 <%@ include file="../components/footer.jsp" %>

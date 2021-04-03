@@ -12,7 +12,7 @@
 <%@ include file="../components/header.jsp" %>
 <div class="main">
     <div class="white_box game-box">
-        <div class="px-3 py-2 bg-white text-black">
+        <div class="px-3 py-2 bg-white text-black menu-jogo">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
 
@@ -21,21 +21,21 @@
                         <div class="nav">
                             <li>
                                 <button type="button" onclick="ajudaPublicoRequest()" id="id_ajudaPublico"
-                                        class="nav-link text-black-50" <c:if test="${ronda.getJogo().isAjudaPublicoUsed()}">disabled</c:if>>
+                                        class="nav-link text-black-50 btn-help " <c:if test="${ronda.getJogo().isAjudaPublicoUsed()}"> disabled</c:if>>
                                     <img src="/imagens/public-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda do público
                                 </button>
                             </li>
                             <li>
                                 <button type="button" onclick="ajuda5050Request()" id="id_ajuda5050"
-                                        class="nav-link text-black-50" <c:if test="${ronda.getJogo().isAjuda5050Used()}">disabled</c:if>>
+                                        class="nav-link text-black-50 btn-help" <c:if test="${ronda.getJogo().isAjuda5050Used()}">disabled</c:if>>
                                     <img src="/imagens/50-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Ajuda 50/50
                                 </button>
                             </li>
                             <li>
                                 <button type="button" onclick="ajudaTrocaPerguntaRequest()" id="id_ajudaTrocaPergunta"
-                                        class="nav-link text-black-50"<c:if test="${ronda.getJogo().isAjudaTrocaPerguntaUsed()}">disabled</c:if>>
+                                        class="nav-link text-black-50 btn-help"<c:if test="${ronda.getJogo().isAjudaTrocaPerguntaUsed()}">disabled</c:if>>
                                     <img src="/imagens/change-help.svg" alt="ranking_logo" class="header_icon"/>
                                     Troca pergunta
                                 </button>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="white_box ">
+        <div class="white_box2">
 
             <div class="perfil-row text-center">
                 <h3 class="title_next_appt" id="idPergunta">${ronda.getPergunta().getDescricao()}</h3>
@@ -122,6 +122,22 @@
 
 </body>
 <script>
+    //disable help buttons
+    document.getElementById("id_ajudaPublico").addEventListener("click", disabledButton1);
+    document.getElementById("id_ajuda5050").addEventListener("click", disabledButton2);
+    document.getElementById("id_ajudaTrocaPergunta").addEventListener("click", disabledButton3);
+
+    function disabledButton1() {
+        document.getElementById("id_ajudaPublico").disabled = true;
+    }
+    function disabledButton2() {
+        document.getElementById("id_ajuda5050").disabled = true;
+    }
+    function disabledButton3() {
+        document.getElementById("id_ajudaTrocaPergunta").disabled = true;
+    }
+
+
     //countdown clock
     let timeleft = ${tempo};
     countDownClock()
@@ -130,10 +146,10 @@
         let downloadTimer = setInterval(function () {
             if (timeleft <= 0) {
                 clearInterval(downloadTimer);
-                document.getElementById("countdown").innerHTML = "Terminou<br>Tempo";
+                document.getElementById("countdown").innerHTML = "Terminou o <br/> tempo";
                 gameOver()
             } else {
-                document.getElementById("countdown").innerHTML = timeleft + "<br>segundos";
+                document.getElementById("countdown").innerHTML = timeleft + " segundos";
             }
             timeleft -= 1;
         }, 1000);
