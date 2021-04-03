@@ -15,11 +15,9 @@
     <div class="white_box">
         <div class="perfil-main-col">
             <div class="perfil-row">
-                <div class="perfil-row">
-                    <img src="${imageURL}" alt="alert-img" class="img-fill-form"/>
-                    <h3 class="title_next_appt">${message}</h3>
-                    <audio src="${audioURL}" controls autoplay class="btn-w35"></audio>
-                </div>
+                <img src="${imageURL}" alt="alert-img" class="img-fill-form"/>
+                <h3 class="title_next_appt">${message}</h3>
+                <audio src="${audioURL}" controls autoplay class="btn-w35"></audio>
             </div>
         </div>
 
