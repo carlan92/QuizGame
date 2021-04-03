@@ -24,6 +24,21 @@ header {
     opacity: 0.9;
 }
 
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    opacity: 0.9;
+    padding: 0;
+}
+
+
+input[type="radio"] {
+    cursor: pointer;
+}
+
 .main {
     min-height: fit-content;
 }
@@ -153,19 +168,7 @@ header {
     width: 13%;
 }
 
-input[type="radio"] {
-    cursor: pointer;
-}
 
-footer {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-bottom: 0px;
-    opacity: 0.9;
-    padding: 0;
-}
 
 /*outro css*/
 
@@ -489,6 +492,12 @@ select option:disabled {
 .btn-outline-success {
     border-color: #60C676;
     color: #4b4848;
+}
+
+.btn-w35 {
+    width: 35%;
+    display: block;
+    margin: auto;
 }
 
 .btn-outline-success:hover {

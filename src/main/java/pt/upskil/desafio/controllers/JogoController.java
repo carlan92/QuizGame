@@ -73,10 +73,13 @@ public class JogoController {
 
             modelMap.put("message", "Game Over !!!");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
+
             return "components/alert-message";
         } catch (NoGameActiveException e) {
             modelMap.put("message", "Game Over !!!");
             modelMap.put("imageURL", AlertMessageImage.FAILURE.getImageURL());
+            modelMap.put("audioURL", AlertMessageImage.FAILURE.getAudioURL());
             return "components/alert-message";
         }
 
@@ -88,6 +91,8 @@ public class JogoController {
         modelMap.put("user", user);
         modelMap.put("message", "Ganhou o Jogo !!! Parabéns !");
         modelMap.put("imageURL", AlertMessageImage.SUCCESS.getImageURL());
+        modelMap.put("audioURL", AlertMessageImage.SUCCESS.getAudioURL());
+
         return "components/alert-message";
     }
 

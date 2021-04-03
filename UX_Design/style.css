@@ -360,6 +360,12 @@ select option:disabled {
     margin: auto;
 }
 
+.btn-w25 {
+    width: 25%;
+    display: block;
+    margin: auto;
+}
+
 /*add-question*/
 
 .add-pergunta {
