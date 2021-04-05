@@ -112,9 +112,12 @@ public class PerguntaServicoImpl implements PerguntaServico {
         }
     }
 
+    private static final int NUM_TENTATIVAS_BUSCAR_PERGUNTA_VALIDA = 10;
+
     @Override
     public List<Pergunta> obterPerguntas(Dificuldade dificuldade) throws ObterPerguntasException {
         ResponseEntity<PerguntaResponse[]> response;
+
         try {
             response = restTemplate.getForEntity(String.format(URL_PEDIR_PERGUNTAS, dificuldade.getApiText()), PerguntaResponse[].class);
         } catch (HttpClientErrorException |
@@ -128,6 +131,42 @@ public class PerguntaServicoImpl implements PerguntaServico {
         }
 
         List<Pergunta> perguntas = new ArrayList<>(response.getBody().length);
+
+        for (PerguntaResponse pr : response.getBody()) {
+            if (!isValidPerguntaResponse(pr)) {
+                boolean perguntaValida = false;
+                for (int i = 0; i < NUM_TENTATIVAS_BUSCAR_PERGUNTA_VALIDA; i++) {
+                    ResponseEntity<PerguntaResponse[]> newResponse;
+
+                    try {
+                        newResponse = restTemplate.getForEntity(String.format(URL_PEDIR_PERGUNTAS, dificuldade.getApiText()), PerguntaResponse[].class);
+                    } catch (HttpClientErrorException |
+                            HttpServerErrorException |
+                            UnknownHttpStatusCodeException e) {
+                        throw new ObterPerguntasException();
+                    }
+
+                    if (newResponse.getBody() == null || newResponse.getBody().length == 0) {
+                        break;
+                    }
+                    PerguntaResponse replacementpr = newResponse.getBody()[0];
+
+                    if (isValidPerguntaResponse(replacementpr)) {
+                        pr.setPergunta(replacementpr.getPergunta());
+                        pr.setResposta1(replacementpr.getResposta1());
+                        pr.setResposta2(replacementpr.getResposta2());
+                        pr.setResposta3(replacementpr.getResposta3());
+                        pr.setResposta4(replacementpr.getResposta4());
+                        perguntaValida = true;
+                        break;
+                    }
+                }
+                if (!perguntaValida) {
+                    throw new ObterPerguntasException();
+                }
+            }
+        }
+
         for (PerguntaResponse pr : response.getBody()) {
             Pergunta pergunta = new Pergunta();
 
@@ -156,11 +195,18 @@ public class PerguntaServicoImpl implements PerguntaServico {
             perguntaRepository.save(pergunta);
 
 
-
             perguntas.add(pergunta);
         }
 
         return perguntas;
+    }
+
+    private static boolean isValidPerguntaResponse (PerguntaResponse pr) {
+        return !pr.getPergunta().replace(" ", "").isEmpty() &&
+                !pr.getResposta1().replace(" ", "").isEmpty() &&
+                !pr.getResposta2().replace(" ", "").isEmpty() &&
+                !pr.getResposta3().replace(" ", "").isEmpty() &&
+                !pr.getResposta4().replace(" ", "").isEmpty();
     }
 
     @Override
@@ -194,6 +240,10 @@ public class PerguntaServicoImpl implements PerguntaServico {
 
         for (Dificuldade dificuldade : Dificuldade.values()) {
             perguntas.addAll(obterPerguntas(dificuldade));
+        }
+
+        if (perguntas.size() != 15) {
+            throw new ObterPerguntasException();
         }
 
         return perguntas;
